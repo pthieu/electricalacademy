@@ -14,7 +14,10 @@
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
     "angular-socket-io": "~0.6.0",
-    "angular-ui-router": "~0.2.10"
+    "angular-ui-router": "~0.2.10",
+    "showdown": "~0.5.4",
+    "angular-markdown": "~0.0.1",
+    "google-code-prettify": "~1.0.4"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

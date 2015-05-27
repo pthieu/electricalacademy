@@ -6,7 +6,9 @@ angular.module('portfolioApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'btford.markdown',
+  'angular-markdown'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -14,6 +16,12 @@ angular.module('portfolioApp', [
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+    
+    // options to be passed to Showdown
+    // see: https://github.com/coreyti/showdown#extensions
+    // markdownConverterProvider.config({
+    //   extensions: ['prettify']
+    // });
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
