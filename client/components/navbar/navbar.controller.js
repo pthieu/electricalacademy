@@ -1,12 +1,17 @@
 'use strict';
 
 angular.module('portfolioApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    },
-    {
+    }, {
+      'title': 'Tutorials',
+      'link': '/tutorial'
+    }, {
+      'title': 'Articles',
+      'link': '/article'
+    }, {
       'title': 'Resume',
       'link': '/resume'
     }];

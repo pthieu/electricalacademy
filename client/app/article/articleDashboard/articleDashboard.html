@@ -1,0 +1,20 @@
+<!-- This is the summary page for all the articles, which should have edit options -->
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ul>
+        <li ng-repeat="article in articles">
+          <p>{{article.title}}</p>
+          <p>{{article.content}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>

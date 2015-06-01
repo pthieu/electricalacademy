@@ -1,0 +1,43 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+  <div class="row">
+    <form class="col-md-12 form-horizontal" ng-submit="createArticle($event)">
+      <div class="form-group">
+        <h3>Options</h3>
+        <label for="site" class="control-label col-sm-1">Site:</label>
+        <div class="col-sm-5">
+          <select id="site" class="form-control" ng-model="articleSite" ng-options="option.text for option in options.site track by option.value" required></select>
+        </div>
+        <label for="type" class="control-label col-sm-1">Type:</label>
+        <div class="col-sm-5">
+          <select id="type" class="form-control" ng-model="articleType" ng-options="option.text for option in options.type track by option.value" required></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <h3>Categories:</h3>
+        <label class="checkbox-inline" ng-repeat="c in options.category">
+          <input type="checkbox" ng-checked="articleCategory.indexOf(c.value) > -1" value="{{c.value}}" ng-click="toggleCategory(c.value)">{{c.text}}</label>
+      </div>
+      <div class="form-group">
+        <h3>Title:</h3>
+        <input type="text" class="form-control" ng-model="articleTitle" required>
+      </div>
+      <div class="form-group">
+        <h3>Content:</h3>
+        <textarea type="text" class="form-control" rows="5" ng-model="articleContent" required></textarea>
+        <!-- note, to use ng-bind/ng-model with btf-markdown, have to use attr and not element for directive -->
+      </div>
+      <div class="form-group text-right">
+        <button class="btn btn-primary" type="submit">Create</button>
+      </div>
+      <div class="form-group">
+        <h3>Preview:</h3>
+        <h1 ng-bind="articleTitle"></h1>
+        <markdown class='javascript' ng-model="articleContent" extensions="prettify"></markdown>
+      </div>
+      <div class="form-group text-right">
+        <button class="btn btn-primary" type="submit">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
