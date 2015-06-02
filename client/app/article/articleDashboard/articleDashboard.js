@@ -6,6 +6,7 @@ angular.module('portfolioApp')
       .state('articleDashboard', {
         url: '/article/dashboard',
         templateUrl: 'app/article/articleDashboard/articleDashboard.html',
-        controller: 'ArticleDashboardCtrl'
+        controller: 'ArticleDashboardCtrl',
+        authenticate: true
       });
   });
