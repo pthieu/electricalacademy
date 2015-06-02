@@ -28,6 +28,7 @@
         <!-- note, to use ng-bind/ng-model with btf-markdown, have to use attr and not element for directive -->
       </div>
       <div class="form-group text-right">
+        <button class="btn btn-primary" ng-click="$location.path('article/dashboard')">Cancel</button>
         <button class="btn btn-primary" type="submit">Create</button>
       </div>
       <div class="form-group">
@@ -36,6 +37,7 @@
         <markdown class='javascript' ng-model="articleContent" extensions="prettify"></markdown>
       </div>
       <div class="form-group text-right">
+        <button class="btn btn-primary" ng-click="$location.path('article/dashboard')">Cancel</button>
         <button class="btn btn-primary" type="submit">Create</button>
       </div>
     </form>
