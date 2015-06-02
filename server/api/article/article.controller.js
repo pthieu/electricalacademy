@@ -46,6 +46,8 @@ exports.update = function(req, res) {
   Article.findById(req.params.id, function (err, article) {
     if (err) { return handleError(res, err); }
     if(!article) { return res.send(404); }
+
+    article.last_updated = new Date(); // If editing existing article, update last_updated time
     var updated = _.merge(article, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
