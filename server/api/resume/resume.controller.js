@@ -73,7 +73,7 @@ exports.list = function(req, res) {
           'title': 'Advanced Tool Development Engineer',
           'company': {
             'name': 'AMD',
-            'logo': 'qc-logo.png'
+            'logo': 'amd-logo.png'
           },
           'startdate': '2010-09-01',
           'enddate': '2010-12-31',
@@ -87,7 +87,7 @@ exports.list = function(req, res) {
           'title': 'Electronics Technician',
           'company': {
             'name': 'Christie Digital',
-            'logo': 'qc-logo.png'
+            'logo': 'christie-logo.png'
           },
           'startdate': '2010-01-01',
           'enddate': '2010-04-01',
@@ -101,7 +101,7 @@ exports.list = function(req, res) {
           'title': 'Software Diagnostics Validation Technician',
           'company': {
             'name': 'AMD',
-            'logo': 'qc-logo.png'
+            'logo': 'amd-logo.png'
           },
           'startdate': '2009-05-01',
           'enddate': '2009-09-01',
@@ -115,7 +115,7 @@ exports.list = function(req, res) {
           'title': 'Integration & Systems Hardware and Software Designer',
           'company': {
             'name': 'SOMA Networks',
-            'logo': 'qc-logo.png'
+            'logo': 'soma-logo.jpg'
           },
           'startdate': '2008-01-01',
           'enddate': '2008-12-01',
