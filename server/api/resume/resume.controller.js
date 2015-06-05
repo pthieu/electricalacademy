@@ -54,7 +54,7 @@ exports.list = function(req, res) {
         },{
           'title': 'ASIC Design Verification Engineer',
           'company': {
-            'name': 'Qualcomm Inc.',
+            'name': 'Qualcomm',
             'logo': 'qc-logo.png'
           },
           'startdate': '2012-04-04',
@@ -68,6 +68,64 @@ exports.list = function(req, res) {
             'Plan coverage points based on architecture design for each milestone of project.',
             'Automate test generation and test-flow control through scripting via perl/csh/makefiles.',
             'Debugging of existing IP issues via debugger (DDD) and waveform analysis (Verdi/DVE).'
+          ]
+      },{
+          'title': 'Advanced Tool Development Engineer',
+          'company': {
+            'name': 'AMD',
+            'logo': 'qc-logo.png'
+          },
+          'startdate': '2010-09-01',
+          'enddate': '2010-12-31',
+          'location': 'Markham, Ontario',
+          'description': [
+            'Conversion of Windows-based C++ code for in-house microcircuit display controller into Standard C++ under linux environment.',
+            'Analysis and debugging of test system issues, re-development of in-house testing scripts (Perl).',
+            'Daily testing of automated 3D testing tools, make sure in-house tools conform to specifications.'
+          ]
+      },{
+          'title': 'Electronics Technician',
+          'company': {
+            'name': 'Christie Digital',
+            'logo': 'qc-logo.png'
+          },
+          'startdate': '2010-01-01',
+          'enddate': '2010-04-01',
+          'location': 'Waterloo, Ontario',
+          'description': [
+            'Developed a more compact relay control switch using circuit design theory, reducing cost of production by 30%, and enhancing the work efficiency of testers.',
+            'Analyzed projector testing system, influenced managers to prioritize updating to new proposed system. Prototype results showed an accuracy increase of 78%; managers contemplate adopting new system.',
+            'Learned essential hands-on skill: soldering, circuit board layering, team co-ordination. The adaptation skills learned here can be transferred to any job.'
+          ]
+      },{
+          'title': 'Software Diagnostics Validation Technician',
+          'company': {
+            'name': 'AMD',
+            'logo': 'qc-logo.png'
+          },
+          'startdate': '2009-05-01',
+          'enddate': '2009-09-01',
+          'location': 'Markham, Ontario',
+          'description': [
+            'Developed code automating creation of customized ASIC register packages (graphic card tests). Reduced effective processing time from 30 minutes to around 5-10 seconds.',
+            'Re-developed existing source-control automation code to become more modular and efficient to reduce bugs and redundancy. Rough estimates show a 34% increase in efficiency.',
+            'Learned essential hands-on skill: soldering, etching, circuit board layering. The adaptation skills learned here can be transferred to any job.'
+          ]
+      },{
+          'title': 'Integration & Systems Hardware and Software Designer',
+          'company': {
+            'name': 'SOMA Networks',
+            'logo': 'qc-logo.png'
+          },
+          'startdate': '2008-01-01',
+          'enddate': '2008-12-01',
+          'location': 'Toronto, Ontario',
+          'description': [
+            'Learned technical aspects of interoperable telecommunications systems through WiMax equipment management and maintenance.',
+            'Testing and debugging of WiMax system i.e. finding maximum throughput rate of MAC layer under specific conditions.',
+            'Modem Firmware upgrade and maintenance.',
+            'Learned to analyze and solve problems in a systematic way.',
+            'Analysis and research of competitor products.'
           ]
       }];
       res.jsonp(jobs);

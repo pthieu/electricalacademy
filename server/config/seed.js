@@ -13,20 +13,36 @@ var Article = require('../api/article/article.model');
 Article.find({}).remove(function() {
   Article.create({
     _id: '000000000000000000000001',
-    stub: 'test-article 1',
-    title: '#Test Article Title 1',
+    stub: 'test-article-1',
+    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
     content: '**test content 1**',
     site: 1,
     type: 1,
-    category: 1
+    category: [1]
   },{
     _id: '000000000000000000000002',
-    stub: 'test-article 2',
-    title: '#Test Article 2',
+    stub: 'test-article-2',
+    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
     content: '**test content 2**',
     site: 1,
     type: 1,
-    category: 1
+    category: [1]
+  },{
+    _id: '000000000000000000000003',
+    stub: 'test-article-3',
+    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
+    content: '**test content 3**',
+    site: 1,
+    type: 2,
+    category: [1]
+  },{
+    _id: '000000000000000000000004',
+    stub: 'test-article-2',
+    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
+    content: '**test content 2**',
+    site: 2,
+    type: 2,
+    category: [1]
   }, function() {
       console.log('finished populating Articles');
     }
