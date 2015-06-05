@@ -27,6 +27,8 @@ angular.module('portfolioApp')
     };
 
     $scope.isActive = function(route) {
-      return route === $location.path();
+      route = (route.length === 1)?'^'+route+'$':route; // check to see for special case of home's '/'
+      var rgx = new RegExp(route,'i')
+      return ((!!$location.path().match(rgx))?$location.path().match(rgx).length > 0:null);
     };
   });
