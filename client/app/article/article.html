@@ -1,10 +1,18 @@
 <!-- This is what public user sees when hitting /article -->
-
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      This is the article view.
+    <div ng-repeat="article in articles">
+      <div class="col-md-12">
+        <h3><a ng-href="article/{{article._id}}">{{article.title}}</a></h3>
+        <div class="col-md-12">
+          <h6 class="text-muted">Last Updated: {{article.last_updated | date : 'MMMM dd, yyyy hh:mm a'}}</h6>
+        </div>
+        <markdown class='javascript' ng-model="article.content" extensions="prettify"></markdown>
+      </div>
     </div>
+  </div>
+  <div ui-view class="row">
+    
   </div>
 </div>
