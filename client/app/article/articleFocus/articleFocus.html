@@ -1,4 +1,8 @@
+<button class="btn btn-primary" ui-sref="article">Back</button>
+
 <div class="col-md-12">
-This is the articleFocus view.
-<button class="btn btn-primary" ui-sref="article"></button>
+<h3>{{article.title}}</h3>
+</div>
+<div class="col-md-12">
+	<markdown class='javascript' ng-model="article.content" extensions="prettify"></markdown>
 </div>

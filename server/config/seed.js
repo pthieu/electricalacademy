@@ -12,9 +12,18 @@ var Article = require('../api/article/article.model');
 
 Article.find({}).remove(function() {
   Article.create({
-    stub: 'test-article',
-    title: '#Test Article',
-    content: '**test content**',
+    _id: '000000000000000000000001',
+    stub: 'test-article 1',
+    title: '#Test Article Title 1',
+    content: '**test content 1**',
+    site: 1,
+    type: 1,
+    category: 1
+  },{
+    _id: '000000000000000000000002',
+    stub: 'test-article 2',
+    title: '#Test Article 2',
+    content: '**test content 2**',
     site: 1,
     type: 1,
     category: 1
