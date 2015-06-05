@@ -1,18 +1,16 @@
 @import 'bootstrap/less/bootstrap.less';
 @import 'font-awesome/less/font-awesome.less';
-
 @icon-font-path: '/bower_components/bootstrap/fonts/';
 @fa-font-path: '/bower_components/font-awesome/fonts';
-
 /**
  * App-wide Styles
  */
 
 .browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
 
 // injector
@@ -26,19 +24,6 @@
 @import 'resume/resume.less';
 @import 'modal/modal.less';
 // endinjector
-
-/* tomorrow eighties theme for markdown */
-/* Tomorrow Night Eighties Theme */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-.prettyprint {
-  background: #2d2d2d;
-  font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
-  font-size: 12px;
-  line-height: 1.5;
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
 .pln {
   color: #cccccc;
 }
@@ -47,107 +32,91 @@
   .str {
     color: #99cc99;
   }
-
   .kwd {
     color: #cc99cc;
   }
-
   .com {
     color: #999999;
   }
-
   .typ {
     color: #6699cc;
   }
-
   .lit {
     color: #f99157;
   }
-
   .pun {
     color: #cccccc;
   }
-
   .opn {
     color: #cccccc;
   }
-
   .clo {
     color: #cccccc;
   }
-
   .tag {
     color: #f2777a;
   }
-
   .atn {
     color: #f99157;
   }
-
   .atv {
     color: #66cccc;
   }
-
   .dec {
     color: #f99157;
   }
-
   .var {
     color: #f2777a;
   }
-
   .fun {
     color: #6699cc;
   }
 }
-@media print, projection {
+
+@media print,
+projection {
   .str {
     color: #006600;
   }
-
   .kwd {
     color: #006;
     font-weight: bold;
   }
-
   .com {
     color: #600;
     font-style: italic;
   }
-
   .typ {
     color: #404;
     font-weight: bold;
   }
-
   .lit {
     color: #004444;
   }
-
-  .pun, .opn, .clo {
+  .pun,
+  .opn,
+  .clo {
     color: #444400;
   }
-
   .tag {
     color: #006;
     font-weight: bold;
   }
-
   .atn {
     color: #440044;
   }
-
   .atv {
     color: #006600;
   }
 }
 /* Specify class=linenums on a pre to get line numbering */
+
 ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
 }
-
 /* IE indents via margin-left */
+
 li.L0,
 li.L1,
 li.L2,
@@ -160,8 +129,8 @@ li.L8,
 li.L9 {
   /* */
 }
-
 /* Alternate shading for lines */
+
 li.L1,
 li.L3,
 li.L5,
@@ -169,3 +138,43 @@ li.L7,
 li.L9 {
   /* */
 }
+/* tomorrow eighties theme for markdown */
+/* Tomorrow Night Eighties Theme */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+.prettyprint {
+  background: #2d2d2d;
+  font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+/* NAVBAR CUSTOM BEGIN*/
+
+.navbar {
+  &.navbar-default {
+    background-color: #ef3030;
+    border-color: #dd0000;
+    .navbar-nav {
+      li {
+        a {
+          color: #fff;
+          &:hover {
+            color: #ffcccc;
+          }
+        }
+      }
+      .active {
+        a {
+          background-color: #ca0000;
+          color: #fff;
+        }
+      }
+    }
+    .navbar-brand {
+      color: #fff;
+    }
+  }
+}
+/* NAVBAR CUSTOM END*/
