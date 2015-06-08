@@ -22,7 +22,7 @@ Article.find({}).remove(function() {
   },{
     _id: '000000000000000000000002',
     stub: 'test-article-2',
-    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
+    title: 'Lorem Ipsum is simply dummy tex',
     content: '**test content 2**',
     site: 1,
     type: 1,
@@ -30,7 +30,7 @@ Article.find({}).remove(function() {
   },{
     _id: '000000000000000000000003',
     stub: 'test-article-3',
-    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
+    title: 'Lorem Ipsum is simply dummy te',
     content: '**test content 3**',
     site: 1,
     type: 2,
