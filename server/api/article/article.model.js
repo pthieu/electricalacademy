@@ -12,6 +12,10 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
+  photo: { // This is for the banner spread at the top of each article so things look pretty
+    type: String,
+    default: null
+  },
   // author: // TODO: implement this later
   content: { // Actual content, use markdown to make text look good
     type: String,

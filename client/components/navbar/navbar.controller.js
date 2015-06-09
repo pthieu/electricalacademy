@@ -5,9 +5,9 @@ angular.module('portfolioApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    }, {
-      'title': 'Tutorials',
-      'link': '/tutorial'
+    // }, {
+    //   'title': 'Tutorials',
+      // 'link': '/tutorial'
     }, {
       'title': 'Articles',
       'link': '/article'

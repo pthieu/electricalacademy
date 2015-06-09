@@ -32,7 +32,7 @@ exports.list = function(req, res) {
             'Big data analytics, finding value in the data mined for clients and providing easily-readable reports.',
             'Development of cross-platform web services that interfaces with multiple client callcenters and forms.',
             'Development of CRM platform focusing quick setup and scalability so client onboarding is less stressful and quicker, allowing rapid client acquisition.',
-            '.NET MVC, KnockoutJS.'
+            'Rapid prototyping of end-to-end solutions with technologies: .NET MVC, KnockoutJS, AngularJS, MS SQL'
           ]
         },{
           'title': 'Full Stack Developer',

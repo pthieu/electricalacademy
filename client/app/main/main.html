@@ -1,6 +1,30 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
-<header class="hero-unit" id="banner">
+<div class="container-fluid">
+  <div class="col-sm-9">
+    <div ng-repeat="article in articles">
+      <div class="col-md-12">
+        <img class="img-responsive" ng-src="{{article.photo || 'http://dummyimage.com/1280x480/666666/ffffff.png&text='+article.title}}" alt="" />
+        <h3><a ng-href="article/{{article._id}}">{{article.title}}</a></h3>
+        <div class="col-md-12">
+          <h6 class="text-muted">Last Updated: {{article.last_updated | date : 'MMMM dd, yyyy hh:mm a'}}</h6>
+        </div>
+        <markdown class='javascript' ng-model="article.content" extensions="prettify"></markdown>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <h3>
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      Search
+    </h3>
+    <div class="form-group">
+      <input type="text" class="form-control" id="article-search">
+    </div>
+    <p ng-repeat="article in articles"><a ng-href="article/{{article._id}}">{{article.title}}</a></p>
+  </div>
+</div>
+<!-- <header class="hero-unit" id="banner">
   <div class="container">
     <h1>'Allo, 'Allo!</h1>
     <p class="lead">Kick-start your next web app with Angular Fullstack</p>
@@ -28,13 +52,12 @@
       </span>
     </p>
   </form>
-</div>
-
+</div> -->
 <footer class="footer">
   <div class="container">
-      <p>Copyright &copy; 2015 | 
-        <a href="https://twitter.com/ioPhong">@ioPhong</a> |
-        <a href="http://www.electricalacademy.com">Electrical Academy</a>
-      </p>
+    <p>Copyright &copy; 2015 |
+      <a href="https://twitter.com/ioPhong">@ioPhong</a> |
+      <a href="http://www.electricalacademy.com">Electrical Academy</a>
+    </p>
   </div>
 </footer>

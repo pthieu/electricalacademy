@@ -2,28 +2,39 @@
 
 angular.module('portfolioApp')
   .controller('MainCtrl', ['$scope', '$http', 'socket', function ($scope, $http, socket) {
-    $scope.awesomeThings = [];
-
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
-    });
-
-    $scope.addThing = function() {
-      if ($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', {
-        name: $scope.newThing
+    // Grab existing articles
+    $http.get('/api/articles').success(function(articles) {
+      // Truncate content for each article so dashboard isn't cluttered
+      $scope.articles = articles.map(function(_article) {
+        var _content = _article.content;
+        var trunc_length = 200; // truncation length in characters
+        _article.content = _content.substring(0, trunc_length).concat((_content.length > trunc_length + 1) ? '...' : ''); // Take only 100 characters and then add ellipses
+        return _article;
       });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
-
-    $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('thing');
     });
+
+    // $scope.awesomeThings = [];
+
+    // $http.get('/api/things').success(function(awesomeThings) {
+    //   $scope.awesomeThings = awesomeThings;
+    //   socket.syncUpdates('thing', $scope.awesomeThings);
+    // });
+
+    // $scope.addThing = function() {
+    //   if ($scope.newThing === '') {
+    //     return;
+    //   }
+    //   $http.post('/api/things', {
+    //     name: $scope.newThing
+    //   });
+    //   $scope.newThing = '';
+    // };
+
+    // $scope.deleteThing = function(thing) {
+    //   $http.delete('/api/things/' + thing._id);
+    // };
+
+    // $scope.$on('$destroy', function() {
+    //   socket.unsyncUpdates('thing');
+    // });
   }]);
