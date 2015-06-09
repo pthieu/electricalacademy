@@ -36,7 +36,7 @@ exports.create = function(req, res) {
   //   article_stub = _.take(article_stub.split(' '), 8).join('-');
   // }
   // Delete category so db defaults trigger but only if user didn't select any categories in front end
-  if(typeof req.body.category != 'undefined' && req.body.category instanceof Array && req.body.category.length <= 0){
+  if(typeof req.body.category !== 'undefined' && req.body.category instanceof Array && req.body.category.length <= 0){
     delete req.body.category
     req.body.category = [1]; // Explicitly set to General category if array is empty, don't know why db defaults aren't working now
   }

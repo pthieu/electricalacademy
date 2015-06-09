@@ -219,12 +219,13 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the app
-    // <!-- bower:css -->
+    // <!-- bower:css --> and <!-- bower:js -->
+    // NOTE: excluding google-code-prettyify css because we are using tomorrow scheme for coloring and exclude the js because it's not min friendly
     wiredep: {
       target: {
         src: '<%= yeoman.client %>/index.html',
         ignorePath: '<%= yeoman.client %>/',
-        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/, /google-code-prettify.*?css/ ]
+        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/, /google-code-prettify.*?css/, /google-code-prettify.*?js/]
       }
     },
 
