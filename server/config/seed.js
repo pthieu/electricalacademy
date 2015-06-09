@@ -12,37 +12,33 @@ var Article = require('../api/article/article.model');
 
 Article.find({}).remove(function() {
   Article.create({
-    _id: '000000000000000000000001',
-    stub: 'test-article-1',
-    photo: 'http://dummyimage.com/1280x480/666666/ffffff.png&text=test 1',
+    stub: 'stub 1',
+    image: 'http://dummyimage.com/1280x480/666666/ffffff.png&text=test 1',
     title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
     content: '**test content 1**',
     site: 1,
     type: 1,
     category: [1]
   },{
-    _id: '000000000000000000000002',
-    stub: 'test-article-2',
-    photo: 'http://dummyimage.com/1280x480/ff0000/ffffff.png&text=test 1',
+    stub: 'stub 2',
+    image: 'http://dummyimage.com/1280x480/ff0000/ffffff.png&text=test 1',
     title: 'Lorem Ipsum is simply dummy tex',
     content: '**test content 2**',
     site: 1,
     type: 1,
     category: [1]
   },{
-    _id: '000000000000000000000003',
-    stub: 'test-article-3',
-    photo: 'http://dummyimage.com/1280x480/00ff00/ffffff.png&text=test 1',
+    stub: 'stub 3',
+    image: 'http://dummyimage.com/1280x480/00ff00/ffffff.png&text=test 1',
     title: 'Lorem Ipsum is simply dummy te',
     content: '**test content 3**',
     site: 1,
     type: 2,
     category: [1]
   },{
-    _id: '000000000000000000000004',
-    stub: 'test-article-2',
-    photo: 'http://dummyimage.com/1280x480/0000ff/ffffff.png&text=test 1',
-    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
+    stub: 'stub 4',
+    image: 'http://dummyimage.com/1280x480/0000ff/ffffff.png&text=test 1',
+    title: 'dsfds f8ur 283ru we8fjd fhksf89 2y2893y 3298 djskfh',
     content: '**test content 2**',
     site: 2,
     type: 2,

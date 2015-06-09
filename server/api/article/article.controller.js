@@ -13,6 +13,14 @@ exports.index = function(req, res) {
 
 // Get a single article
 exports.show = function(req, res) {
+  Article.findOne({'stub': req.params.stub}, function (err, article) {
+    if(err) { return handleError(res, err); }
+    if(!article) { return res.send(404); }
+    return res.json(article);
+  });
+};
+// Get single article by id
+exports.articleById = function(req, res) {
   Article.findById(req.params.id, function (err, article) {
     if(err) { return handleError(res, err); }
     if(!article) { return res.send(404); }
@@ -20,21 +28,22 @@ exports.show = function(req, res) {
   });
 };
 
+
 // Creates a new article in the DB.
 exports.create = function(req, res) {
-  var article_stub = req.body.title.replace(/[^a-zA-Z -]+/g,'').replace(/[- ]+/g,'-'); // Greedy match all non-alphabetical characters, and then replace whitespace(1 or more) with dashes
-  if (article_stub.split(' ').length > 8){ // If array longer than 8 words, truncate
-    article_stub = _.take(article_stub.split(' '), 8).join('-');
-  }
+  // var article_stub = req.body.title.replace(/[^a-zA-Z -]+/g,'').replace(/[- ]+/g,'-'); // Greedy match all non-alphabetical characters, and then replace whitespace(1 or more) with dashes
+  // if (article_stub.split(' ').length > 8){ // If array longer than 8 words, truncate
+  //   article_stub = _.take(article_stub.split(' '), 8).join('-');
+  // }
   // Delete category so db defaults trigger but only if user didn't select any categories in front end
   if(typeof req.body.category != 'undefined' && req.body.category instanceof Array && req.body.category.length <= 0){
     delete req.body.category
     req.body.category = [1]; // Explicitly set to General category if array is empty, don't know why db defaults aren't working now
   }
-
-  var article_options = _.merge({stub:article_stub}, req.body)
   
-  Article.create(article_options, function(err, article) {
+  var article_options = _.merge({'stub': 'placeholder'}, req.body) // placeholder for stub
+  var article = new Article(article_options);
+  article.save(function(err, article) {
     if(err) { return handleError(res, err); }
     return res.json(201, article);
   });

@@ -30,7 +30,7 @@ angular.module('portfolioApp')
 
     // If articleID exists from URL bar, we call web services to grab info and populate
     if(!!$scope.articleID){
-      $http.get('/api/articles/'+$scope.articleID).success(function(article) {
+      $http.get('/api/articles/articleById/'+$scope.articleID).success(function(article) {
         // If article is found, we the form with the existing article for edit
         $scope.articleSite = $scope.options.site[article.site-1]; // DB index starts at 0, front end array starts at 0
         $scope.articleType = $scope.options.type[article.type-1]; // DB index starts at 0, front end array starts at 0

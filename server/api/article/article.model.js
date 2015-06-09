@@ -1,18 +1,20 @@
 'use strict';
 
+var _ = require('lodash');
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
   stub: { // This is for SEO purposes, so URL has some type of lookup via legible words
     type: String,
+    unique: true,
     required: true
   },
   title: { // NO MARKDOWN FOR THIS, just straight up text for separating from content
     type: String,
     required: true
   },
-  photo: { // This is for the banner spread at the top of each article so things look pretty
+  image: { // This is for the banner spread at the top of each article so things look pretty
     type: String,
     default: null
   },
@@ -44,6 +46,18 @@ var ArticleSchema = new Schema({
     type: Boolean,
     default: true
   }
+});
+
+// Below triggers before article is saved, will take title and create a stub for URL referencing for better SEO
+ArticleSchema.pre('save', function (next) {
+  var article = this;
+  var word_limit = 12
+  var article_stub = article.title.replace(/[^a-zA-Z -]+/g,'').replace(/[- ]+/g,'-'); // Greedy match all non-alphabetical characters, and then replace whitespace(1 or more) with dashes
+  if (article_stub.split('-').length > word_limit){ // If array longer than word_limit, truncate
+    article_stub = _.take(article_stub.split('-'), word_limit).join('-');
+  }
+  article.stub = article_stub;
+  next();
 });
 
 module.exports = mongoose.model('Article', ArticleSchema);
