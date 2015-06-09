@@ -1,23 +1,23 @@
-.article-thumb{
-  img {
-    width: 100%;
+.article-view {
+  .article-thumb {
+    img {
+      width: 100%;
+    }
   }
-}
-.article-info{
-  .title {
-    margin-bottom: 30px;
-    line-height: 1.2;
-    
-    a {
-
-      &:hover {
-        text-decoration: none;
+  .article-info {
+    .title {
+      margin-bottom: 30px;
+      line-height: 1.2;
+      a {
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }
-}
-.article-wrapper{
-  @media @desktop{
-    min-height: 420px;
+  .article-wrapper {
+    @media @desktop {
+      max-height: 420px;
+    }
   }
 }

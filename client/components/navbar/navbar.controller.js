@@ -8,9 +8,9 @@ angular.module('portfolioApp')
     // }, {
     //   'title': 'Tutorials',
       // 'link': '/tutorial'
-    }, {
-      'title': 'Articles',
-      'link': '/article'
+    // }, {
+    //   'title': 'Articles',
+    //   'link': '/article'
     }, {
       'title': 'Resume',
       'link': '/resume'

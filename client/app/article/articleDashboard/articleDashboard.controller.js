@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('portfolioApp')
-  .controller('ArticleDashboardCtrl', function($scope, $http) {
+  .controller('ArticleDashboardCtrl', function($scope, $http, $location) {
+    $scope.$location = $location;
+
     // Grab the initial set of available articles
     $http.get('/api/articles').success(function(articles) {
       // Truncate content for each article so dashboard isn't cluttered

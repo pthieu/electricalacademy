@@ -24,6 +24,8 @@ angular.module('portfolioApp')
       ]
     };
 
+    $scope.errors = {}; // initialize errors
+
     // Either we're editing an existing article or creating a new one, we can figure this out from params in url
     $scope.articleID = (typeof $stateParams.article_id === 'undefined' || $stateParams.article_id === '') ? null : $stateParams.article_id;
     $scope.articleExists = false; // Initialize article flag to either call a post or put later
@@ -36,6 +38,7 @@ angular.module('portfolioApp')
         $scope.articleType = $scope.options.type[article.type-1]; // DB index starts at 0, front end array starts at 0
         $scope.articleCategory = article.category;
         $scope.articleTitle = article.title;
+        $scope.articleImage = article.image;
         $scope.articleContent = article.content;
         $scope.articleExists = true; // article exists, so set flag so we can put instead of post
       }).error( function (data, status, headers, config) {
@@ -76,6 +79,7 @@ angular.module('portfolioApp')
         },
         data: {
           title: $scope.articleTitle,
+          image: $scope.articleImage,
           content: $scope.articleContent,
           site: $scope.articleSite.value, // Note that this is an object so we'll have to explicitly refer to .value because server expecting it, otherwise validation error will pop
           type: $scope.articleType.value, // Note that this is an object so we'll have to explicitly refer to .value because server expecting it, otherwise validation error will pop
@@ -87,7 +91,7 @@ angular.module('portfolioApp')
         $scope.redirect = true;
         $location.path('article/dashboard'); // Redirect to dashboard if success
       }).error(function(data, status, headers, config){
-
+        $scope.errors.other = data.err;
       });
 
       //POST to server to create new content

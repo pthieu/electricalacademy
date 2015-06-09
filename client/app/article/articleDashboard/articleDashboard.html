@@ -1,11 +1,13 @@
 <!-- This is the summary page for all the articles, which should have edit options -->
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="container">
+<div class="container article-dashboard-view">
   <div class="col-sm-9">
     <div ng-repeat="article in articles | fuzzySearch : fuzzySearchText : 'OR' track by $index">
       <div class="col-sm-12">
-          <h3><a ng-href="article/edit/{{article._id}}">{{article.title}}</a></h3>
-          <div class="col-md-12">
+          <div class="row">
+            <h3 class="article-title"><a ng-href="article/edit/{{article._id}}">{{article.title}}</a></h3>
+          </div>
+          <div class="row">
             <h6 class="text-muted">Last Updated: {{article.last_updated | date : 'MMMM dd, yyyy hh:mm a'}}</h6>
           </div>
         <markdown class='javascript' ng-model="article.content" extensions="prettify"></markdown>
@@ -14,7 +16,7 @@
   </div>
   <div class="col-sm-3">
     <div class="col-sm-12">
-      <button class="btn btn-primary" ng-click="$back();"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create</button>
+      <button class="btn btn-primary" ng-click="$location.url('/article/edit')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create</button>
     </div>
     <div class="col-sm-12">
       <h3>
