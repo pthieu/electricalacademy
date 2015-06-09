@@ -1,0 +1,1 @@
+forever stop ~/www/portfolio/dist/server/app.js
