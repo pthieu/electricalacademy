@@ -13,6 +13,7 @@ exports.index = function(req, res) {
 
 // Get a single article
 exports.show = function(req, res) {
+  debugger;
   Article.findOne({'stub': req.params.stub}, function (err, article) {
     if(err) { return handleError(res, err); }
     if(!article) { return res.send(404); }
