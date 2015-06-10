@@ -36,13 +36,13 @@ Article.find({}).remove(function() {
     type: 2,
     category: [1]
   },{
-    stub: 'stub 4',
-    image: 'http://dummyimage.com/1280x480/0000ff/ffffff.png&text=test 1',
-    title: 'dsfds f8ur 283ru we8fjd fhksf89 2y2893y 3298 djskfh',
-    content: '**test content 2**',
-    site: 2,
-    type: 2,
-    category: [1]
+    stub: 'Why-Become-Multidisciplinary-In-The-Workforce',
+    image: 'http://upload.wikimedia.org/wikipedia/commons/b/b5/Wenger_EvoGrip_S17.JPG',
+    title: 'Why Become Multidisciplinary In The Workforce?',
+    content: '_The same reason you should focus and perfect a single discipline._\n\nThe question is really quite subjective; I believe the more important question is: _"what is required of you right now and where will your multi-faceted skillset be needed most?"_.\n\nWe need both these types of workers, together creating a balanced workforce; the ones who perform a single function and do it amazingly well, and the ones who can put on different hats and, although will never reach the peak-performance of the single-disciplined person, can do a damn good job as well, not to mention pull a clutch play when needed.\n\nThe important part about being multidisciplinary, is that you really need to keep an eye out on when that\'s needed. If your company is a large corporation, you\'re probably not going to be able to utilize your full potential. Not to say it\'s impossible, but you\'re generally going to have to become a single cog in the machine, never utilizing your pull potential. \n\nWhat you\'d need to do is find a smaller company where you can be agile, and move where you\'re needed, to be able to give an opinion from a world where your complementing skills come from, to be able to combine your experiences and view the world at angles uncommonly perceived. The good thing about being multidisciplinary is that you\'ll begin to notice gaps between your disciplines that few can fill, and to build these bridges to allow others to get across is how you\'ll be able to improve yourself and how we will advance as a race, together.',
+    site: 1,
+    type: 1,
+    category: [1,5,6]
   }, function() {
       console.log('finished populating Articles');
     }
