@@ -5,7 +5,7 @@ var Article = require('./article.model');
 
 // Get list of articles
 exports.index = function(req, res) {
-  Article.find({}, null, {sort: {date: -1}}, function (err, articles) {
+  Article.find({}, null, {sort: {_created: -1}}, function (err, articles) {
     if(err) { return handleError(res, err); }
     return res.json(200, articles);
   });
