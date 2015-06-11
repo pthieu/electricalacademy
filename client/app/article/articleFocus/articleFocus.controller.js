@@ -10,16 +10,9 @@ angular.module('portfolioApp')
     $scope.articleStub = (typeof $stateParams.article_stub === 'undefined' || $stateParams.article_stub === '') ? null : $stateParams.article_stub;
     $scope.articleYear = (typeof $stateParams.article_year === 'undefined' || $stateParams.article_year === '') ? null : $stateParams.article_year;
     $scope.articleMonth = (typeof $stateParams.article_month === 'undefined' || $stateParams.article_month === '') ? null : $stateParams.article_month;
-    $scope.articleDay = (typeof $stateParams.article_day === 'undefined' || $stateParams.article_day === '') ? null : $stateParams.articdaytub;
+    $scope.articleDay = (typeof $stateParams.article_day === 'undefined' || $stateParams.article_day === '') ? null : $stateParams.article_day;
 
-    $http.get('/api/articles/'+$scope.articleID, {
-      data:{
-        stub: $scope.articleStub,
-        year: $scope.articleYear,
-        month: $scope.articleMonth,
-        day: $scope.articleDay
-      }
-    }).success(function(article) {
+    $http.get('/api/articles/articleByStub/'+$scope.articleYear+'/'+$scope.articleMonth+'/'+$scope.articleDay+'/'+$scope.articleStub).success(function(article) {
       // Truncate content for each article so dashboard isn't cluttered
       $scope.article = article;
     });
