@@ -17,14 +17,14 @@ module.exports = function(app) {
 
   // sitemap object with hardcoded URLs
   var sitemap = sm.createSitemap({
-    hostname: 'http://www.electricalacademy.com',
+    hostname: 'http://electricalacademy.com',
     cacheTime: 600000, // 600 sec - cache purge period 
     urls: [{
-      url: '', // http://www.electricalacademy.com
+      url: '', // http://electricalacademy.com
       changefreq: 'daily',
       priority: 1
     }, {
-      url: '/', // http://www.electricalacademy.com + '/'
+      url: '/', // http://electricalacademy.com + '/'
       changefreq: 'daily',
       priority: 1
     }, {
