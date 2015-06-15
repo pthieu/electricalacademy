@@ -29,21 +29,12 @@ angular.module('portfolioApp')
     // Calls the getCategories function from the ArticleCategory Service,
     // Will return a promise
     ArticleCategoryService.getCategories()
-      .then(function (categoriesResult) { // try
-        debugger;
-        if (typeof categoriesResult === 'object' && typeof categoriesResult.length === 'undefined'){ // case where we make a GET call and it returns an object
-          $scope.categories = categoriesResult.data;
-        }
-        else { // case where we grab from ArticleCategoryService's object because it's saved
-          $scope.categories = categoriesResult
-        }
+      .then(function (categories) { // try
+        $scope.options.category = categories
       }, function (err) { // catch
         console.log(err);
       }); // can add a third callback for 'throw' portion of try-catch-throw
 
-    $interval(function () {
-      console.log($scope.categories);
-    }, 1000);
     // Either we're editing an existing article or creating a new one, we can figure this out from params in url
     $scope.articleID = (typeof $stateParams.article_id === 'undefined' || $stateParams.article_id === '') ? null : $stateParams.article_id;
     $scope.articleExists = false; // Initialize article flag to either call a post or put later
