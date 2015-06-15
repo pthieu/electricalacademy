@@ -21,7 +21,5 @@ module.exports = {
             'mongodb://localhost/electricalacademy'
   },
 
-  hostname: process.env.HOSTNAME ||
-            'phongt.com' ||
-            undefined
+  hostname: 'phongt.com'
 };
