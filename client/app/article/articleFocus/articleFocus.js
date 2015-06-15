@@ -4,7 +4,7 @@ angular.module('portfolioApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('article.focus', {
-        url: '/:article_stub', // note that because the state is a child state (i.e. has a dot), it will automatically append parent url section
+        url: '/:article_year/:article_month/:article_day/:article_stub', // note that because the state is a child state (i.e. has a dot), it will automatically append parent url section
         templateUrl: 'app/article/articleFocus/articleFocus.html',
         controller: 'ArticleFocusCtrl',
         resolve: {

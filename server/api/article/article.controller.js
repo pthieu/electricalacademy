@@ -5,12 +5,13 @@ var Article = require('./article.model');
 
 // Get list of articles
 exports.index = function(req, res) {
-  Article.find(function (err, articles) {
+  Article.find({}, null, {sort: {_created: -1}}, function (err, articles) {
     if(err) { return handleError(res, err); }
     return res.json(200, articles);
   });
 };
 
+// TODO: remove? currently not used, do we need this?
 // Get a single article
 exports.show = function(req, res) {
   Article.findOne({'stub': req.params.stub}, function (err, article) {
@@ -19,6 +20,27 @@ exports.show = function(req, res) {
     return res.json(article);
   });
 };
+
+// Get a single article by stub
+exports.articleByStub = function(req, res) {
+  var date = {
+    year: req.params.year,
+    month: req.params.month,
+    day: req.params.day
+  }
+  var stub = req.params.stub;
+
+  date.start = new Date(date.year, date.month, date.day);
+  date.end = new Date(date.year, date.month, date.day+1);
+
+  // Look in date range + stub so we can guarantee no duplicates if we accidentally name an article the same thing in the future
+  Article.findOne({'_created':{'$gte': date.start, '$lt': date.end}, 'stub': req.params.stub}, function (err, article) {
+    if(err) { return handleError(res, err); }
+    if(!article) { return res.send(404); }
+    return res.json(article);
+  });
+};
+
 // Get single article by id
 exports.articleById = function(req, res) {
   Article.findById(req.params.id, function (err, article) {

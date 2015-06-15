@@ -8,7 +8,7 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/articleById/:id', controller.articleById);
-router.get('/:stub', controller.show);
+router.get('/articleByStub/:year/:month/:day/:stub', controller.articleByStub);
 router.post('/', auth.isAuthenticated(), controller.create);
 router.put('/:id', auth.isAuthenticated(), controller.update);
 router.patch('/:id', auth.isAuthenticated(), controller.update);

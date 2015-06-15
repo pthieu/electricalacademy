@@ -1,20 +1,18 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container-fluid main-view">
-  <div class="col-sm-9">
-    <div ng-repeat="article in articles">
-      <div class="col-md-12">
-        <a ng-href="article/{{article.stub}}">
-          <div class="col-md-12 article-image-wrapper">
-            <img class="img-responsive" ng-src="{{article.image || 'http://dummyimage.com/1280x480/666666/ffffff.png&text='+article.title}}" alt="" />
-          </div>
-          <h3>{{article.title}}</h3>
-        </a>
+  <div class="col-sm-9 col-xs-12">
+    <div ng-repeat="article in articles" class="col-md-12 article-wrapper">
+      <a ng-href="article/{{getArticleFocusDate(article, 'year')}}/{{getArticleFocusDate(article, 'month')}}/{{getArticleFocusDate(article, 'day')}}/{{article.stub}}">
+        <h3>{{article.title}}</h3>
         <div class="col-md-12">
-          <h6 class="text-muted">Last Updated: {{article.last_updated | date : 'MMMM dd, yyyy hh:mm a'}}</h6>
+          <h5 class="text-muted">Last Updated: {{article.last_updated | date : 'MMMM dd, yyyy hh:mm a'}}</h5>
         </div>
-        <markdown class='javascript' ng-model="article.content" extensions="prettify"></markdown>
-        <br />
-      </div>
+        <div class="col-md-12 article-image-wrapper">
+          <img class="img-responsive" ng-src="{{article.image || 'http://dummyimage.com/1280x480/666666/ffffff.png&text='+article.title}}" alt="" />
+        </div>
+      </a>
+      <markdown class='markdown javascript' ng-model="article.content" extensions="prettify"></markdown>
+      <br />
     </div>
   </div>
   <div class="col-sm-3">
@@ -25,7 +23,9 @@
     <div class="form-group">
       <input type="text" class="form-control" id="article-search" ng-model="fuzzySearchText">
     </div>
-    <p ng-repeat="article in articles | fuzzySearch : fuzzySearchText : 'OR' track by $index"><a ng-href="article/{{article.stub}}">{{article.title}}</a></p>
+    <a ng-href="article/{{article.stub}}" ng-repeat="article in articles | fuzzySearch : fuzzySearchText : 'OR' track by $index">
+      <p>{{article.title}}</p>
+    </a>
   </div>
 </div>
 <!-- <header class="hero-unit" id="banner">
@@ -57,11 +57,4 @@
     </p>
   </form>
 </div> -->
-<footer class="footer">
-  <div class="container">
-    <p>Copyright &copy; 2015 |
-      <a href="https://twitter.com/ioPhong">@ioPhong</a> |
-      <a href="http://www.electricalacademy.com">Electrical Academy</a>
-    </p>
-  </div>
-</footer>
+<div ng-include="'components/footer/footer.html'"></div>
