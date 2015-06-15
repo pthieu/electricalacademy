@@ -26,7 +26,7 @@ var socketio = require('socket.io')(server, {
 });
 require('./config/socketio')(socketio);
 require('./config/express')(app);
-require('./sitemap')(app);
+require('./sitemap')(app); // This has to come before ./routes because ./routes has 404, so sitemap will never trigger if it comes after
 require('./routes')(app);
 
 // Start server
