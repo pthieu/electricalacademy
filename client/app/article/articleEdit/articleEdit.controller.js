@@ -14,14 +14,14 @@ angular.module('portfolioApp')
         {'value': 3, 'text': 'Lesson'},
         {'value': 4, 'text': 'Comic'}
       ],
-      category: [
-        {'value': 1, 'text': 'General'},
-        {'value': 2, 'text': 'Hardware'},
-        {'value': 3, 'text': 'Software'},
-        {'value': 4, 'text': 'Technology'},
-        {'value': 5, 'text': 'Entrepreneur'},
-        {'value': 6, 'text': 'Motivation'},
-      ]
+      // category: [
+      //   {'value': 1, 'text': 'General'},
+      //   {'value': 2, 'text': 'Hardware'},
+      //   {'value': 3, 'text': 'Software'},
+      //   {'value': 4, 'text': 'Technology'},
+      //   {'value': 5, 'text': 'Entrepreneur'},
+      //   {'value': 6, 'text': 'Motivation'},
+      // ]
     };
 
     $scope.errors = {}; // initialize errors
@@ -34,6 +34,10 @@ angular.module('portfolioApp')
       }, function (err) { // catch
         console.log(err);
       }); // can add a third callback for 'throw' portion of try-catch-throw
+
+      $interval(function () {
+        console.log($scope.options.category);
+      },1000);
 
     // Either we're editing an existing article or creating a new one, we can figure this out from params in url
     $scope.articleID = (typeof $stateParams.article_id === 'undefined' || $stateParams.article_id === '') ? null : $stateParams.article_id;
@@ -58,8 +62,7 @@ angular.module('portfolioApp')
     // Or the third case is that articleID exists but it's not in DB, so the $http.get will be a fail, so we'll have to use defaults so below is outside $http.get block for this reason
     $scope.articleSite = $scope.options.site[0];
     $scope.articleType = $scope.options.type[0];
-    $scope.articleCategory = [1];
-    
+    $scope.articleCategory = ['general'];
 
     // Handles the selection of categories so we can POST to server as a simple arrayx
     $scope.toggleCategory = function (category_val) {

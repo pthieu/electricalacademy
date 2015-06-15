@@ -7,7 +7,7 @@ angular.module('portfolioApp')
 
     var categories = [];
 
-    var _getCategories = $http.get('/api/articles/category').then(function (_categories) {
+    var _getCategories = $http.get('/api/articles/category').error(function (data, status, headers, config) {}).then(function (_categories) {
       categories = _categories.data;
       return categories;
     });
