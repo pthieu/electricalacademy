@@ -9,6 +9,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/articleById/:id', controller.articleById);
 router.get('/articleByStub/:year/:month/:day/:stub', controller.articleByStub);
+router.get('/category', controller.getAllCategories);
 router.post('/', auth.isAuthenticated(), controller.create);
 router.put('/:id', auth.isAuthenticated(), controller.update);
 router.patch('/:id', auth.isAuthenticated(), controller.update);

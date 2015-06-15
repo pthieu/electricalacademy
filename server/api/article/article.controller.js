@@ -50,6 +50,14 @@ exports.articleById = function(req, res) {
   });
 };
 
+exports.getAllCategories = function(req, res) {
+  Article.distinct('category', function (err, categories) {
+    if(err) { return handleError(res, err); }
+    // we check length >= 0 because at the initial deploy, we might not have categories
+    if(!categories && categories.length >= 0) { return res.send(404); }
+    return res.json(categories);
+  });
+};
 
 // Creates a new article in the DB.
 exports.create = function(req, res) {
