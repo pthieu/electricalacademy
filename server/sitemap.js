@@ -8,6 +8,7 @@ var Q = require("q");
 var errors = require('./components/errors');
 var sm = require('sitemap');
 var _ = require('lodash');
+var config = require('./config/environment');
 
 // required
 var Article = require('./api/article/article.model');
@@ -17,7 +18,7 @@ module.exports = function(app) {
 
   // sitemap object with hardcoded URLs
   var sitemap = sm.createSitemap({
-    hostname: 'http://electricalacademy.com',
+    hostname: (config.env === 'production') ? 'http://'+config.hostname : 'http://localhost:'+config.port,
     cacheTime: 600000, // 600 sec - cache purge period 
     urls: [{
       url: '', // http://electricalacademy.com
