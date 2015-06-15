@@ -30,10 +30,9 @@ var ArticleSchema = new Schema({
   type: Number, // Sets if 1: article/essay/opinion piece/cover note, 2: tutorial, 3: less or 4:comic
   // TODO: consider changing category type to string? more understandable in DB
   category: [{ // Sets type of category, i.e. general, software, hardware, current technology, randoms, etc
-      type: Number,
-      default: [1]
-    }
-  ],
+      type: String,
+      default: ['general']
+  }],
   _created: {
     type: Date,
     default: Date.now
