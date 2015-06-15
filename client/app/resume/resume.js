@@ -6,6 +6,9 @@ angular.module('portfolioApp')
       .state('resume', {
         url: '/resume',
         templateUrl: 'app/resume/resume.html',
-        controller: 'ResumeCtrl'
+        controller: 'ResumeCtrl',
+        resolve: {
+          $title: function () { return 'Resume'; }
+        }
       });
   });

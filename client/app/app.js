@@ -7,7 +7,8 @@ angular.module('portfolioApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'angular-markdown'
+  'angular-markdown',
+  'ui.router.title'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

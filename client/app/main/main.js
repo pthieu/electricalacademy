@@ -6,6 +6,9 @@ angular.module('portfolioApp')
       .state('main', {
         url: '/',
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        resolve: {
+          $title: function () { return 'Home'; }
+        }
       });
   });
