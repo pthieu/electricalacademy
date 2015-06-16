@@ -35,10 +35,6 @@ angular.module('portfolioApp')
         console.log(err);
       }); // can add a third callback for 'throw' portion of try-catch-throw
 
-      $interval(function () {
-        console.log($scope.options.category);
-      },1000);
-
     // Either we're editing an existing article or creating a new one, we can figure this out from params in url
     $scope.articleID = (typeof $stateParams.article_id === 'undefined' || $stateParams.article_id === '') ? null : $stateParams.article_id;
     $scope.articleExists = false; // Initialize article flag to either call a post or put later
