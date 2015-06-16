@@ -19,6 +19,7 @@
           <input type="checkbox" ng-checked="articleCategory.indexOf(c.value) > -1" value="{{c.value}}" ng-click="toggleCategory(c.value)">{{c.text}}
         </label> -->
         <input type="text" class="form-control" ng-model="articleCategory">
+        <category-look-ahead suggested-tags="options.category" selected-tags="articleCategory"></category-look-ahead>
       </div>
       <div class="form-group">
         <h3>Title:</h3>

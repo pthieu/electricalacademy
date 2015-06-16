@@ -18,9 +18,16 @@ angular.module('portfolioApp')
     // for (var x = 0; x < input.length; x++) {
     //   if (re.test(input[x])) returnArray.push(input[x]);
     // }
-    returnArray = _.filter(input, function (article) {
-      return re.test(article.title);
-    });
+    if (input.length >= 1 && !!input[0].title){ // TODO: figure out a better way to detect if article or not
+      returnArray = _.filter(input, function (article) {
+        return re.test(article.title);
+      });
+    }
+    else{
+     returnArray = _.filter(input, function (val) {
+        return re.test(val);
+      }); 
+    }
     // View what the 2 regular expression look like
     return returnArray;
   }

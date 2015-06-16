@@ -55,7 +55,7 @@ exports.getAllCategories = function(req, res) {
     if(err) { return handleError(res, err); }
     // we check length >= 0 because at the initial deploy, we might not have categories
     if(!categories && categories.length >= 0) { return res.send(404); }
-    return res.json(categories);
+    return res.json(_.sortBy(categories)); // sorts by alphabetical, we can add a callback function to determine other ways to manipulate order i.e. return -val for DESC
   });
 };
 
