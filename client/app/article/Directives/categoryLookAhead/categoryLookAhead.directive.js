@@ -45,6 +45,7 @@ angular.module('portfolioApp')
           // At this point, users who have tried to add a freeform tag (not select a tag) that's already in newTags should be filtered out
           // Test to see if selectedTags already has this value
           if(scope.selectedTags.indexOf(scope.filteredSuggestedTags[index]) > -1) return;
+
           // Test to see if user used arrow keys to select tag, if false then we use searchText instead of index
           // Also tests if suggestions are in filteredSuggestedTags; even though it's technically a new tag add, we put it to the next conditional block for color formatting
           if(index < 0 && scope.filteredSuggestedTags.indexOf(scope.searchText) <= -1){
@@ -67,6 +68,10 @@ angular.module('portfolioApp')
             scope.selectedTags.push(scope.filteredSuggestedTags[index]);
             scope.newTags.push(scope.filteredSuggestedTags[index]);
           }
+          scope.selectedTags = _.map(scope.selectedTags, function (val) {
+            return val.replace(/[^\w -]/gi, '').replace(/[ -]+/gi, '-');
+          });
+
           scope.selectedTags = _.sortBy(scope.selectedTags); // Re-order the tags so we can find alphabetically
           scope.searchText = ''; // Clear search text
         };

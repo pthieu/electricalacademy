@@ -50,11 +50,18 @@ var ArticleSchema = new Schema({
 ArticleSchema.pre('save', function (next) {
   var article = this;
   var word_limit = 12
-  var article_stub = article.title.replace(/[^a-zA-Z -]+/g,'').replace(/[- ]+/g,'-'); // Greedy match all non-alphabetical characters, and then replace whitespace(1 or more) with dashes
+  
+  // Greedy match all non-alphabetical characters, and then replace whitespace(1 or more) with dashes
+  var article_stub = article.title.replace(/[^a-zA-Z -]+/g,'').replace(/[- ]+/g,'-');
+  // Delete all non-\w characters except spaces and dashes. replaces all combinations of [ -] with a single dash
   if (article_stub.split('-').length > word_limit){ // If array longer than word_limit, truncate
     article_stub = _.take(article_stub.split('-'), word_limit).join('-');
   }
+  
+  
+
   article.stub = article_stub;
+  article.category = _.uniq(article.category); // Make sure category tags are unique
   next();
 });
 

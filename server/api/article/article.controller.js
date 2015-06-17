@@ -87,6 +87,8 @@ exports.update = function(req, res) {
     if(!article) { return res.send(404); }
 
     article.last_updated = new Date(); // If editing existing article, update last_updated time
+    article.category.length = 0; // We delete category field because merge will fuck it up
+
     var updated = _.merge(article, req.body);
     updated.markModified('category'); // have to mark array modified because array kinda more complex
 

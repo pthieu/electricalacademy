@@ -5,6 +5,7 @@ angular.module('portfolioApp')
   return function (input, searchText, AND_OR) {
     // if empty search string, return everything, input is an array
     if (!searchText) return input;
+    searchText = searchText.replace(/[^\w -]+/gi,''); // Delete all special characters so it doesn't break regex later, we only really care about words anyway
     var returnArray = [],
       // Split on single or multi space
       splitext = searchText.toLowerCase().split(/\s+/),
