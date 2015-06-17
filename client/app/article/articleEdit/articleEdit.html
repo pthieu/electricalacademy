@@ -15,6 +15,12 @@
       </div>
       <div class="form-group">
         <h3>Categories:</h3>
+        <span>Legend:</span>
+        <div class="col-xs-12 margin-bottom-10">
+          <span class="label label-primary">Tag exists and already saved</span>
+          <span class="label label-warning">Tag exists and added to article</span>
+          <span class="label label-danger">Tag does not exist</span>
+        </div>
         <!-- <label class="checkbox-inline" ng-repeat="c in options.category">
           <input type="checkbox" ng-checked="articleCategory.indexOf(c.value) > -1" value="{{c.value}}" ng-click="toggleCategory(c.value)">{{c.text}}
         </label> -->
@@ -23,35 +29,47 @@
       </div>
       <div class="form-group">
         <h3>Title:</h3>
-        <input type="text" class="form-control" ng-model="articleTitle" required>
+        <div class="col-xs-12">
+          <input type="text" class="form-control" ng-model="articleTitle" required>
+        </div>
       </div>
       <div class="form-group">
         <h3>Image</h3>
-        <input type="text" class="form-control" ng-model="articleImage" required>
-        <img class="img-responsive img-preview" ng-src="{{articleImage}}" alt="" />
+        <div class="col-xs-12">
+          <input type="text" class="form-control" ng-model="articleImage" required>
+          <img class="img-responsive img-preview" ng-src="{{articleImage}}" alt="" />
+        </div>
       </div>
       <div class="form-group">
         <h3>Content:</h3>
-        <textarea type="text" class="form-control" rows="5" ng-model="articleContent" required></textarea>
-        <!-- note, to use ng-bind/ng-model with btf-markdown, have to use attr and not element for directive -->
+        <div class="col-xs-12">
+          <textarea type="text" class="form-control" rows="5" ng-model="articleContent" required></textarea>
+          <!-- note, to use ng-bind/ng-model with btf-markdown, have to use attr and not element for directive -->
+        </div>
       </div>
       <div class="form-group text-right">
-        <button class="btn btn-primary" ng-click="$location.path('article/dashboard')">Cancel</button>
-        <button class="btn btn-primary" type="submit">Create</button>
-        <div class="has-error" ng-show="errors.other">
-          <p class="help-block">{{ errors.other }}</p>
+        <div class="col-xs-12">
+          <button class="btn btn-primary" ng-click="$location.path('article/dashboard')">Cancel</button>
+          <button class="btn btn-primary" type="submit">Create</button>
+          <div class="has-error" ng-show="errors.other">
+            <p class="help-block">{{ errors.other }}</p>
+          </div>
         </div>
       </div>
       <div class="form-group">
         <h3>Preview:</h3>
-        <h1 ng-bind="articleTitle"></h1>
-        <markdown class='javascript' ng-model="articleContent" extensions="prettify"></markdown>
+        <div class="col-xs-12">
+          <h1 ng-bind="articleTitle"></h1>
+          <markdown class='javascript' ng-model="articleContent" extensions="prettify"></markdown>
+        </div>
       </div>
       <div class="form-group text-right">
-        <button class="btn btn-primary" ng-click="$location.path('article/dashboard')">Cancel</button>
-        <button class="btn btn-primary" type="submit">Create</button>
-        <div class="has-error" ng-show="errors.other">
-          <p class="help-block">{{ errors.other }}</p>
+        <div class="col-xs-12">
+          <button class="btn btn-primary" ng-click="$location.path('article/dashboard')">Cancel</button>
+          <button class="btn btn-primary" type="submit">Create</button>
+          <div class="has-error" ng-show="errors.other">
+            <p class="help-block">{{ errors.other }}</p>
+          </div>
         </div>
       </div>
     </form>

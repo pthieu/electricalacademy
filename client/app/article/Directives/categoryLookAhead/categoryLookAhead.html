@@ -1,10 +1,22 @@
 <div class="category-lookahead-directive">
-  <div class="col-xs-12">
-    <div ng-repeat="tag in selectedTags">
-      <span>{{tag}}</span>
+  <div class="col-xs-12 selected-tags-wrapper">
+    <div ng-repeat="tag in selectedTags" class="selected-tag">
+      <span class="label label-primary" ng-class="{
+        'label-warning': (newTags.indexOf(tag) > -1),
+        'label-danger': (unknownTags.indexOf(tag) > -1),
+        'label-success': (
+          searchText === tag) || (
+            selectedIndex > -1 &&
+            selectedTags.indexOf(filteredSuggestedTags[selectedIndex]) === $index
+          )
+      }" ng-click="removeFromSelectedTags(tag)">
+        <span class="vmiddle">{{tag}}</span><span class="glyphicon glyphicon-remove vmiddle"></span>
+      </span>
     </div>
   </div>
-  <input type="text" class="form-control" placeholder="Apply Tags" ng-keydown="checkKeyDown($event)" ng-change="filterTags()" ng-model="searchText">
+  <div class="col-xs-12">
+    <input type="text" class="form-control" placeholder="Apply Tags" ng-keydown="checkKeyDown($event)" ng-change="filterTags()" ng-model="searchText">
+  </div>
   <div ng-show="searchText.length>0" class="col-xs-12">
     <div>
       <span ng-repeat="tag in filteredSuggestedTags" ng-class="{active : $index === selectedIndex}">

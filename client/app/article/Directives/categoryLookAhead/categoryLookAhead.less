@@ -1,5 +1,25 @@
-.category-lookahead-directive{
-	.active{
-		font-weight: bold;
-	}
+.category-lookahead-directive {
+  .active {
+    font-weight: bold;
+  }
+  .selected-tags-wrapper {
+    margin-bottom: 3px;
+    .selected-tag {
+      display: inline;
+      &:not(:last-of-type) {
+        margin-right: 3px;
+      }
+    }
+    .vmiddle {
+      padding-left: 2px;
+    }
+    .label {
+      // this is the wrapper for the colored tags
+      cursor: pointer;
+      font-size: 85%;
+      .glyphicon{
+        top:0;
+      }
+    }
+  }
 }
