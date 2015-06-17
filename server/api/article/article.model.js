@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
 var ArticleSchema = new Schema({
   stub: { // This is for SEO purposes, so URL has some type of lookup via legible words
     type: String,
-    unique: true,
     required: true
   },
   title: { // NO MARKDOWN FOR THIS, just straight up text for separating from content
