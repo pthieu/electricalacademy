@@ -2,16 +2,15 @@
   .active {
     font-weight: bold;
   }
+  .glyphicon{
+    padding-left:2px;
+  }
   .selected-tags-wrapper {
-    margin-bottom: 3px;
     .selected-tag {
       display: inline;
       &:not(:last-of-type) {
         margin-right: 3px;
       }
-    }
-    .vmiddle {
-      padding-left: 2px;
     }
     .label {
       // this is the wrapper for the colored tags
@@ -19,6 +18,24 @@
       font-size: 85%;
       .glyphicon{
         top:0;
+      }
+    }
+  }
+  .suggested-tag-wrapper{
+    display:inline-block;
+    border: 1px solid #888;
+    border-top: 0;
+    @media @mobile{
+      display:block;
+    }
+    .suggested-tag{
+      padding: 0 10px 0 10px;
+      &.active{
+        background-color: #888;
+        color: #fff;
+        &.exists{
+          background-color: #5cb85c;
+        }
       }
     }
   }

@@ -15,16 +15,17 @@
       </div>
       <div class="form-group">
         <h3>Categories:</h3>
-        <span>Legend:</span>
+        <div>Legend:</div>
         <div class="col-xs-12 margin-bottom-10">
           <span class="label label-primary">Tag exists and already saved</span>
-          <span class="label label-warning">Tag exists and added to article</span>
-          <span class="label label-danger">Tag does not exist</span>
+          <span class="label label-warning">Tag exists but not saved</span>
+          <span class="label label-danger">Tag not found but added</span>
         </div>
         <!-- <label class="checkbox-inline" ng-repeat="c in options.category">
           <input type="checkbox" ng-checked="articleCategory.indexOf(c.value) > -1" value="{{c.value}}" ng-click="toggleCategory(c.value)">{{c.text}}
         </label> -->
         <!-- <input type="text" class="form-control" ng-model="articleCategory"> -->
+        <div>Tags:</div>
         <category-look-ahead suggested-tags="options.category" selected-tags="articleCategory"></category-look-ahead>
       </div>
       <div class="form-group">

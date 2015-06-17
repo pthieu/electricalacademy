@@ -22,9 +22,6 @@ angular.module('portfolioApp')
             if(scope.selectedIndex+1 !== scope.filteredSuggestedTags.length){ // check to see if at end of list
               scope.selectedIndex++;
             }
-          console.log(scope.selectedTags)
-          console.log(scope.filteredSuggestedTags)
-          console.log(scope.selectedTags.indexOf(scope.filteredSuggestedTags[scope.selectedIndex]))
           } else if (event.keyCode === 38) { //up key, decrement selectedIndex
             event.preventDefault();
             if(scope.selectedIndex-1 !== -1){ // check to see if at top of list
