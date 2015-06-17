@@ -1,16 +1,15 @@
 <div class="category-lookahead-directive">
-<div class="col-xs-12">
-	<div ng-repeat="tag in selectedTags">
-		<span>{{tag}}</span>
-	</div>
-</div>
-<input type="text" class="form-control" placeholder="Apply Tags" ng-keydown="checkKeyDown($event)" ng-change="searchTags()" ng-model="searchText">
-<span>{{selectedIndex}}</span>
-<div ng-show="searchText.length>0">
-	<ul>
-		<li ng-repeat="tag in suggestedTags | fuzzySearch : searchText : 'OR' track by $index" ng-class="{active : $index === selectedIndex}">
-			{{tag}}
-		</li>
-	</ul>
-</div>
+  <div class="col-xs-12">
+    <div ng-repeat="tag in selectedTags">
+      <span>{{tag}}</span>
+    </div>
+  </div>
+  <input type="text" class="form-control" placeholder="Apply Tags" ng-keydown="checkKeyDown($event)" ng-change="filterTags()" ng-model="searchText">
+  <div ng-show="searchText.length>0" class="col-xs-12">
+    <div>
+      <span ng-repeat="tag in filteredSuggestedTags" ng-class="{active : $index === selectedIndex}">
+      {{tag}}
+    </span>
+    </div>
+  </div>
 </div>

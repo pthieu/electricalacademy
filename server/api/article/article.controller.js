@@ -88,6 +88,8 @@ exports.update = function(req, res) {
 
     article.last_updated = new Date(); // If editing existing article, update last_updated time
     var updated = _.merge(article, req.body);
+    updated.markModified('category'); // have to mark array modified because array kinda more complex
+
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, article);
