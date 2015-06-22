@@ -5,7 +5,7 @@ var Article = require('./article.model');
 
 // Get list of articles
 exports.index = function(req, res) {
-  Article.find({}, null, {sort: {_created: -1}}).populate('author', 'name _id').exec(function (err, articles) {
+  Article.find({}, null, {sort: {_created: -1}}).populate('author', 'firstname lastname _id').exec(function (err, articles) {
     if(err) { return handleError(res, err); }
     return res.json(200, articles);
   });
