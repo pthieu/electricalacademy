@@ -25,6 +25,12 @@ var UserSchema = new Schema({
  * Virtuals
  */
 UserSchema
+  .virtual('fullname')
+  .get(function () {
+    return this.firstname + ' ' + this.lastname;
+  });
+
+UserSchema
   .virtual('password')
   .set(function(password) {
     this._password = password;

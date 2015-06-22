@@ -5,8 +5,17 @@ var Article = require('./article.model');
 
 // Get list of articles
 exports.index = function(req, res) {
-  Article.find({}, null, {sort: {_created: -1}}).populate('author', 'firstname lastname _id').exec(function (err, articles) {
+  Article.find({}, null, {sort: {_created: -1}}).populate('author', 'firstname lastname fullname _id').exec(function (err, articles) {
     if(err) { return handleError(res, err); }
+    // We can't pass virtuals to client so we have to populate the reference with its virtuals first
+    // We also have to convert it to Object because we shouldn't directly change _doc field in the mongoose object
+    articles = _.map(articles, function(article) {
+      var fullname = article.author.fullname;
+      var obj = article.toObject();
+      obj.author.fullname = fullname;
+      
+      return obj;
+    });
     return res.json(200, articles);
   });
 };
