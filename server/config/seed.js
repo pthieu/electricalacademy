@@ -15,7 +15,8 @@ Q.fcall(function() {
     User.find({}).remove(function() {
       User.create({
         provider: 'local',
-        name: 'Phong Thieu',
+        firstname: 'Phong',
+        lastname: 'Thieu',
         email: 'pthieu@gmail.com',
         password: 'poopoo'
       }, function() {
@@ -33,7 +34,6 @@ Q.fcall(function() {
     var deferred = Q.defer();
     var user_id = user._id;
     Article.find({}).remove(function() {
-    debugger;
       Article.create({
         stub: 'stub 1',
         image: 'http://dummyimage.com/1280x480/666666/ffffff.png&text=test 1',

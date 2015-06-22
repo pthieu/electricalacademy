@@ -10,7 +10,8 @@ angular.module('portfolioApp')
 
       if(form.$valid) {
         Auth.createUser({
-          name: $scope.user.name,
+          firstname: $scope.user.fname,
+          lastname: $scope.user.lname,
           email: $scope.user.email,
           password: $scope.user.password
         })

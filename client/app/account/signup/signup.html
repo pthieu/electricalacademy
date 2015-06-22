@@ -8,14 +8,25 @@
     <div class="col-sm-12">
       <form class="form" name="form" ng-submit="register(form)" novalidate>
 
-        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
-                                            'has-error': form.name.$invalid && submitted }">
-          <label>Name</label>
+        <div class="form-group" ng-class="{ 'has-success': form.fname.$valid && submitted,
+                                            'has-error': form.fname.$invalid && submitted }">
+          <label>First Name:</label>
 
-          <input type="text" name="name" class="form-control" ng-model="user.name"
+          <input type="text" name="fname" class="form-control" ng-model="user.fname"
                  required/>
-          <p class="help-block" ng-show="form.name.$error.required && submitted">
-            A name is required
+          <p class="help-block" ng-show="fform.name.$error.required && submitted">
+            A first name is required
+          </p>
+        </div>
+        
+        <div class="form-group" ng-class="{ 'has-success': form.lname.$valid && submitted,
+                                            'has-error': form.lname.$invalid && submitted }">
+          <label>Last Name:</label>
+
+          <input type="text" name="lname" class="form-control" ng-model="user.lname"
+                 required/>
+          <p class="help-block" ng-show="form.lname.$error.required && submitted">
+            A last name is required
           </p>
         </div>
 
