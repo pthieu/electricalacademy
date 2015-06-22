@@ -7,6 +7,17 @@
 @mobile: ~"only screen and (max-width: 767px)";
 @desktop: ~"only screen and (min-width: 768px)";
 
+.desktop-only{
+  @media @mobile{
+    display:none;
+  }
+}
+.mobile-only{
+  @media @desktop{
+    display:none;
+  }
+}
+
 /**
  * App-wide Styles
  */

@@ -1,18 +1,35 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container-fluid main-view">
   <div class="col-sm-9 col-xs-12">
-    <div ng-repeat="article in articles" class="col-md-12 article-wrapper">
-      <a ng-href="article/{{getArticleFocusDate(article, 'year')}}/{{getArticleFocusDate(article, 'month')}}/{{getArticleFocusDate(article, 'day')}}/{{article.stub}}">
-        <h3>{{article.title}}</h3>
-        <div class="col-md-12">
-          <h5 class="text-muted">Last Updated: {{article.last_updated | date : 'MMMM dd, yyyy hh:mm a'}}</h5>
+    <div ng-repeat="article in articles" class="row article-wrapper">
+      <div class="col-sm-2 article_date_wrapper desktop-only">
+        <div class="col-xs-12 text-right month">
+          {{article._created | date : 'MMMM'}}
         </div>
-        <div class="col-md-12 article-image-wrapper">
-          <img class="img-responsive" ng-src="{{article.image || 'http://dummyimage.com/1280x480/666666/ffffff.png&text='+article.title}}" alt="" />
+        <div class="col-xs-12 text-right day">
+          {{article._created | date : 'dd'}}
         </div>
-      </a>
-      <markdown class='markdown javascript' ng-model="article.content" extensions="prettify"></markdown>
-      <br />
+        <div class="col-xs-12 text-right year">
+            {{article._created | date : 'yyyy'}}
+        </div>
+        <!-- <div class="col-xs-12 text-right time">
+          {{article._created | date : 'hh:mm a'}}
+        </div> -->
+      </div>
+      <div class="col-sm-10">
+        <a ng-href="article/{{getArticleFocusDate(article, 'year')}}/{{getArticleFocusDate(article, 'month')}}/{{getArticleFocusDate(article, 'day')}}/{{article.stub}}">
+          <h3>{{article.title}}</h3>
+          <div class="col-md-12 mobile-only">
+            <h5 class="text-muted">{{article._created | date : 'MMMM dd, yyyy hh:mm a'}}</h5>
+            <!-- <h5 class="text-muted">Last Updated: {{article.last_updated | date : 'MMMM dd, yyyy hh:mm a'}}</h5> -->
+          </div>
+          <div class="col-md-12 article-image-wrapper">
+            <img class="img-responsive" ng-src="{{article.image || 'http://dummyimage.com/1280x480/666666/ffffff.png&text='+article.title}}" alt="" />
+          </div>
+        </a>
+        <markdown class='markdown javascript' ng-model="article.content" extensions="prettify"></markdown>
+        <br />
+      </div>
     </div>
   </div>
   <div class="col-sm-3">
