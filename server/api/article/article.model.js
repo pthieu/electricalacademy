@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
 var ArticleSchema = new Schema({
   stub: { // This is for SEO purposes, so URL has some type of lookup via legible words
     type: String,
-    required: true
   },
   title: { // NO MARKDOWN FOR THIS, just straight up text for separating from content
     type: String,
@@ -43,6 +42,10 @@ var ArticleSchema = new Schema({
   active: {
     type: Boolean,
     default: true
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 
@@ -57,12 +60,20 @@ ArticleSchema.pre('save', function (next) {
   if (article_stub.split('-').length > word_limit){ // If array longer than word_limit, truncate
     article_stub = _.take(article_stub.split('-'), word_limit).join('-');
   }
-  
-  
 
   article.stub = article_stub;
   article.category = _.uniq(article.category); // Make sure category tags are unique
   next();
 });
+
+// ArticleSchema.post('find', function (doc) {
+//   doc.populate('author');
+// });
+
+// ArticleSchema.statics = {
+//   loadAuthor: function (a,b,c,d) {
+//     //TODO: delete this or figure out if we want to use this as a common method
+//   }
+// };
 
 module.exports = mongoose.model('Article', ArticleSchema);

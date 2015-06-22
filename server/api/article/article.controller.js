@@ -5,7 +5,7 @@ var Article = require('./article.model');
 
 // Get list of articles
 exports.index = function(req, res) {
-  Article.find({}, null, {sort: {_created: -1}}, function (err, articles) {
+  Article.find({}, null, {sort: {_created: -1}}).populate('author', 'name _id').exec(function (err, articles) {
     if(err) { return handleError(res, err); }
     return res.json(200, articles);
   });
@@ -71,7 +71,7 @@ exports.create = function(req, res) {
     req.body.category = [1]; // Explicitly set to General category if array is empty, don't know why db defaults aren't working now
   }
   
-  var article_options = _.merge({'stub': 'placeholder'}, req.body) // placeholder for stub
+  var article_options = _.merge({'author':req.user._id}, req.body) // article.stub model changed to not required
   var article = new Article(article_options);
   article.save(function(err, article) {
     if(err) { return handleError(res, err); }
