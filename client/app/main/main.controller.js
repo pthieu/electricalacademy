@@ -20,7 +20,6 @@ angular.module('portfolioApp')
   };
   // Grab existing articles
   $http.get('/api/articles').success(function(articles) {
-    debugger;
     // Truncate content for each article so dashboard isn't cluttered
     // $scope.articles = articles.map(function(_article) {
     //   var _content = _article.content;

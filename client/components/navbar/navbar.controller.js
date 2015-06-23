@@ -19,7 +19,12 @@ angular.module('portfolioApp')
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
-    $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.getCurrentUser = function () {
+      var user = Auth.getCurrentUser();
+      user.firstname = user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1);
+      return user;
+    };
+
 
     $scope.logout = function() {
       Auth.logout();
