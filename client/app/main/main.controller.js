@@ -10,16 +10,17 @@ angular.module('portfolioApp')
         returnSection = t.getUTCFullYear();
         break;
       case 'month':
-        returnSection = t.getUTCMonth();
+        returnSection = t.getUTCMonth()+1; //getUTCMonth() returns 0-11, not 1-12 we need to +1 here so URL makes sense, and then -1 in backend
         break;
       case 'day':
-        returnSection = t.getUTCDay();
+        returnSection = t.getUTCDate();
         break;
     }
     return returnSection;
   };
   // Grab existing articles
   $http.get('/api/articles').success(function(articles) {
+    debugger;
     // Truncate content for each article so dashboard isn't cluttered
     // $scope.articles = articles.map(function(_article) {
     //   var _content = _article.content;

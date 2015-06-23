@@ -33,15 +33,19 @@ exports.show = function(req, res) {
 // Get a single article by stub
 exports.articleByStub = function(req, res) {
   var date = {
-    year: req.params.year,
-    month: req.params.month,
-    day: req.params.day
+    year: parseInt(req.params.year),
+    month: parseInt(req.params.month)-1, // We -1 here because frontend URL has a +1 on the month because getUTCMonth() returns 0-11 and URL needs to make sense but wee= need to handle in backend
+    day: parseInt(req.params.day)
   }
   var stub = req.params.stub;
-
   date.start = new Date(date.year, date.month, date.day);
   date.end = new Date(date.year, date.month, date.day+1);
-
+  
+  //account for situation where server is not using UTC time
+  if(date.start.getTimezoneOffset() !== 0){
+    date.start.setHours(date.start.getHours()-date.start.getTimezoneOffset()/60) // for EDT/EST will be 240/60 hours behind UTC, a positive int; if ahead of UTC, will be negative int, so we subtract
+    date.end.setHours(date.end.getHours()-date.end.getTimezoneOffset()/60)
+  }
   // Look in date range + stub so we can guarantee no duplicates if we accidentally name an article the same thing in the future
   Article.findOne({'_created':{'$gte': date.start, '$lt': date.end}, 'stub': req.params.stub}, function (err, article) {
     if(err) { return handleError(res, err); }
