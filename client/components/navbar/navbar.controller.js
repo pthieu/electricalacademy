@@ -21,8 +21,13 @@ angular.module('portfolioApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = function () {
       var user = Auth.getCurrentUser();
-      user.firstname = user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1);
-      return user;
+      if (typeof user !== 'undefined' && !!user.firstname){
+        user.firstname = user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1);
+        return user;
+      }
+      else {
+        return null;
+      }
     };
 
 
