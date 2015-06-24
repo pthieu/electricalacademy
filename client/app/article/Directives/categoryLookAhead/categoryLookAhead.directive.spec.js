@@ -6,9 +6,14 @@ describe('Directive: categoryLookAhead', function () {
   beforeEach(module('portfolioApp'));
   beforeEach(module('app/article/Directives/categoryLookAhead/categoryLookAhead.html'));
 
-  var element, scope;
+  var $httpBackend,
+      element,
+      scope;
 
-  beforeEach(inject(function ($rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $rootScope) {
+    $httpBackend = _$httpBackend_;
+    $httpBackend.whenGET('app/main/main.html').respond(200, '');
+
     scope = $rootScope.$new();
   }));
 
@@ -16,6 +21,6 @@ describe('Directive: categoryLookAhead', function () {
     element = angular.element('<category-look-ahead></category-look-ahead>');
     element = $compile(element)(scope);
     scope.$apply();
-    expect(element.text()).toBe('this is the categoryLookAhead directive');
+    expect(element.text()).not.toBe(null);
   }));
 });

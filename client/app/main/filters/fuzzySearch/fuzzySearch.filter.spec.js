@@ -11,9 +11,17 @@ describe('Filter: fuzzySearch', function () {
     fuzzySearch = $filter('fuzzySearch');
   }));
 
-  it('should return the input prefixed with "fuzzySearch filter:"', function () {
-    var text = 'angularjs';
-    expect(fuzzySearch(text)).toBe('fuzzySearch filter: ' + text);
-  });
+  it('should return the inputArray with matched word', function () {
+    var inputArray = [
+      'aaa bbb ccc ddd eee',
+      'aaa bbb ccc ddd',
+      'aaa bbb ccc',
+      'aaa bbb',
+      'aaa'
+    ];
+    var searchType = 'OR';
 
+    var searchText = 'eee';
+    expect(fuzzySearch(inputArray, searchText, searchType).length).toBe(1);
+  });
 });

@@ -7,8 +7,8 @@ describe('Service: ArticleCategory', function () {
 
   // instantiate service
   var ArticleCategory;
-  beforeEach(inject(function (_ArticleCategory_) {
-    ArticleCategory = _ArticleCategory_;
+  beforeEach(inject(function (_ArticleCategoryService_) {
+    ArticleCategory = _ArticleCategoryService_;
   }));
 
   it('should do something', function () {
