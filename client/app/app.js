@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('portfolioApp', [
+angular.module('electricalAcademyApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',

@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "electricalacademy",
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {

@@ -3,7 +3,7 @@
 describe('Controller: ResumeCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('portfolioApp'));
+  beforeEach(module('electricalAcademyApp'));
 
   var ResumeCtrl, scope;
 

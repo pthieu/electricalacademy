@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('portfolioApp')
+angular.module('electricalAcademyApp')
   .directive('categoryLookAhead', function($interval, $filter) {
     return {
       templateUrl: 'app/article/Directives/categoryLookAhead/categoryLookAhead.html',

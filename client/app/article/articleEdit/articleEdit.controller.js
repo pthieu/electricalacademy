@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('portfolioApp')
+angular.module('electricalAcademyApp')
   .controller('ArticleEditCtrl', function (ArticleCategoryService, $http, $stateParams, $location, $interval, $scope) {
     $scope.options = {
       site: [

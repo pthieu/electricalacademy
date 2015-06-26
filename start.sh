@@ -2,7 +2,7 @@
 
 # Variables
 LOG_DIR='log' #log folder, located in same level as this script
-APP_NAME='portfolio'
+APP_NAME='electricalacademy'
 APP_PORT='9001'
 
 # Check if log directory exists, if not, then created

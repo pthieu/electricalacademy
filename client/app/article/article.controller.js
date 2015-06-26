@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('portfolioApp')
+angular.module('electricalAcademyApp')
   .controller('ArticleCtrl', function($scope, $http) {
     $http.get('/api/articles').success(function(articles) {
       // Truncate content for each article so dashboard isn't cluttered

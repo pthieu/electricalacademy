@@ -1,1 +1,1 @@
-forever stop ~/www/portfolio/dist/server/app.js
+forever stop ~/www/electricalacademy/dist/server/app.js

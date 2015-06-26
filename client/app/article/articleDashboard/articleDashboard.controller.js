@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('portfolioApp')
+angular.module('electricalAcademyApp')
   .controller('ArticleDashboardCtrl', function($scope, $http, $location) {
     $scope.$location = $location;
 

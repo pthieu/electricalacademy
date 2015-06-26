@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "electricalacademy",
   "version": "0.0.0",
   "dependencies": {
     "angular": ">=1.2.*",
@@ -24,5 +24,8 @@
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
     "angular-scenario": ">=1.2.*"
+  },
+  "resolutions": {
+    "showdown": "~0.5.4"
   }
 }

@@ -3,7 +3,7 @@
 describe('Controller: ArticleEditCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('portfolioApp'));
+  beforeEach(module('electricalAcademyApp'));
 
   var ArticleEditCtrl, scope;
 

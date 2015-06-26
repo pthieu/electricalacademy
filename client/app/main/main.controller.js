@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('portfolioApp')
+angular.module('electricalAcademyApp')
   .controller('MainCtrl', ['$scope', '$http', 'socket', function ($scope, $http, socket) {
   $scope.getArticleFocusDate = function (article, _section) {
     var t = new Date(article._created)
