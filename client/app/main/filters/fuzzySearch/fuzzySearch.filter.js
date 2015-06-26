@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('electricalAcademyApp')
+angular.module('electricalacademyApp')
   .filter('fuzzySearch', function() {
     return function(input, searchText, AND_OR) {
       // if empty search string, return everything, input is an array

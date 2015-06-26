@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('electricalAcademyApp')
+angular.module('electricalacademyApp')
   .controller('ArticleFocusCtrl', function ($scope, $http, $stateParams) {
     // function to go back in history
     $scope.$back = function() { 

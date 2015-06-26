@@ -3,7 +3,7 @@
 describe('Filter: fuzzySearch', function () {
 
   // load the filter's module
-  beforeEach(module('electricalAcademyApp'));
+  beforeEach(module('electricalacademyApp'));
 
   // initialize a new instance of the filter before each test
   var fuzzySearch;

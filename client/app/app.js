@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('electricalAcademyApp', [
+angular.module('electricalacademyApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -9,7 +9,8 @@ angular.module('electricalAcademyApp', [
   'ui.bootstrap',
   'angular-markdown',
   'ui.router.title',
-  'angular.filter'
+  'angular.filter',
+  'ui.tree'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

@@ -3,7 +3,7 @@
 describe('Service: ArticleCategory', function () {
 
   // load the service's module
-  beforeEach(module('electricalAcademyApp'));
+  beforeEach(module('electricalacademyApp'));
 
   // instantiate service
   var ArticleCategory;

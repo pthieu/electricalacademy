@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('electricalAcademyApp')
+angular.module('electricalacademyApp')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',

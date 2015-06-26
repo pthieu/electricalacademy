@@ -1,7 +1,7 @@
 'use strict';
 
 // ResumeService controller
-angular.module('electricalAcademyApp')
+angular.module('electricalacademyApp')
   .controller('ResumeCtrl', function ($scope, $http) {
     // Find a list of jobs via ResumeService
     $scope.find = function() {

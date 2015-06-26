@@ -3,7 +3,7 @@
 describe('Directive: categoryLookAhead', function () {
 
   // load the directive's module and view
-  beforeEach(module('electricalAcademyApp'));
+  beforeEach(module('electricalacademyApp'));
   beforeEach(module('app/article/Directives/categoryLookAhead/categoryLookAhead.html'));
 
   var $httpBackend,

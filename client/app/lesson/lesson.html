@@ -1,0 +1,24 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container-fluid main-view">
+  <div class="col-md-3">
+    <script type="text/ng-template" id="nodes_renderer.html">
+      <div ui-tree-handle>
+        {{lesson.title}}
+      </div>
+      <ol ui-tree-nodes="" ng-model="lesson.children">
+        <li ng-repeat="lesson in lesson.children" ui-tree-node ng-include="'nodes_renderer.html'">
+        </li>
+      </ol>
+    </script>
+    <div ui-tree data-drag-enabled="false">
+      <ol ui-tree-nodes="" ng-model="lessons" id="tree-root">
+        <li ng-repeat="lesson in lessons" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+      </ol>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div ui-view>
+    </div>
+  </div>
+</div>
+<div ng-include="'components/footer/footer.html'"></div>

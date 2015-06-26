@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('electricalAcademyApp')
+angular.module('electricalacademyApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('admin', {

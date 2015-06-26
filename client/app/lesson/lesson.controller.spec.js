@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: ArticleEditCtrl', function () {
+describe('Controller: LessonCtrl', function () {
 
   // load the controller's module
   beforeEach(module('electricalacademyApp'));
 
-  var ArticleEditCtrl, scope;
+  var LessonCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    ArticleEditCtrl = $controller('ArticleEditCtrl', {
+    LessonCtrl = $controller('LessonCtrl', {
       $scope: scope
     });
   }));

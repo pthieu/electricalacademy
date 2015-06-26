@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('electricalAcademyApp')
+angular.module('electricalacademyApp')
   .factory('ArticleCategoryService', function ($http, $q) {
     var categories = [];
 
