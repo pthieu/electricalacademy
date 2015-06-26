@@ -40,7 +40,7 @@
     <div class="form-group">
       <input type="text" class="form-control" id="article-search" ng-model="fuzzySearchText">
     </div>
-    <a ng-href="article/{{article.stub}}" ng-repeat="article in articles | fuzzySearch : fuzzySearchText : 'OR' track by $index">
+    <a ng-href="article/{{getArticleFocusDate(article, 'year')}}/{{getArticleFocusDate(article, 'month')}}/{{getArticleFocusDate(article, 'day')}}/{{article.stub}}" ng-repeat="article in articles | fuzzySearch : fuzzySearchText : 'AND' track by $index">
       <p>{{article.title}}</p>
     </a>
   </div>

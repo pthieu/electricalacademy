@@ -8,7 +8,8 @@ angular.module('portfolioApp', [
   'ui.router',
   'ui.bootstrap',
   'angular-markdown',
-  'ui.router.title'
+  'ui.router.title',
+  'angular.filter'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
