@@ -52,7 +52,7 @@ exports.index = function(req, res) {
         // closeure for env, needed to retain nest
         var nest = nest || 0; // for resetting into child
         // var index = index || null; // to see where in same level node we are
-        var _prefix = _prefix || null;
+        var _prefix = _prefix || null; // we define _prefix here to save env, then we have an individual prefix in the .map function because we don't want to append to this one for each element
         return lessons.map(function (lesson, i) {
           var prefix = nest===0 ? i+1 : _prefix+'.'+i;
           lesson.title = prefix+' '+lesson.title;
