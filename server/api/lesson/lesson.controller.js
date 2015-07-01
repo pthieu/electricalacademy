@@ -5,45 +5,67 @@ var Lesson = require('./lesson.model');
 
 // Get list of lessons
 exports.index = function(req, res) {
-  var lessons = [{
-    'title': '1. Fundamentals',
-    'stub': 'fundamentals',
-    'children': [{
-      'title': '1.0. History',
-      'stub': 'history'
-    },{
-      'title': '1.1. Electricity & electron flow',
-      'stub': 'electricity'
-    },{
-      'title': '1.2. AC/DC',
-      'stub': 'acdc'
-    }]
-  }, {
-    'title': '2. Basics',
-    'stub': 'components',
-    'children':[{
-      'title': '2.1. Voltage, current, and resistance',
-      'stub': 'resistors'
-    },{
-      'title': '2.2. Signals',
-      'stub': 'signals'
-    },{
-      'title': '2.3. Capacitors and ac circuits',
-      'stub': 'capacitors'
-    },{
-      'title': '2.4. Inductors and transformers',
-      'stub': 'inductors'
-    },{
-      'title': '2.5. Diodes and diode circuits',
-      'stub': 'diodes'
-    }]
-  }];
 
-  return res.json(200, lessons);
-  // Lesson.find(function (err, lessons) {
-  //   if(err) { return handleError(res, err); }
-  //   return res.json(200, lessons);
-  // });
+  // var lessons = [{
+  //   'title': '1. Fundamentals',
+  //   'stub': 'fundamentals',
+  //   'children': [{
+  //     'title': '1.0. History',
+  //     'stub': 'history'
+  //   },{
+  //     'title': '1.1. Electricity & electron flow',
+  //     'stub': 'electricity'
+  //   },{
+  //     'title': '1.2. AC/DC',
+  //     'stub': 'acdc'
+  //   }]
+  // }, {
+  //   'title': '2. Basics',
+  //   'stub': 'components',
+  //   'children':[{
+  //     'title': '2.1. Voltage, current, and resistance',
+  //     'stub': 'resistors'
+  //   },{
+  //     'title': '2.2. Signals',
+  //     'stub': 'signals'
+  //   },{
+  //     'title': '2.3. Capacitors and ac circuits',
+  //     'stub': 'capacitors'
+  //   },{
+  //     'title': '2.4. Inductors and transformers',
+  //     'stub': 'inductors'
+  //   },{
+  //     'title': '2.5. Diodes and diode circuits',
+  //     'stub': 'diodes'
+  //   }]
+  // }];
+  // return res.json(200, lessons);
+
+  Lesson.find({'parent':null}).lean().populate('children').exec(function (err, lessons) {
+    if(err) { return handleError(res, err); }
+    Lesson.populate(lessons, {
+      path:'children.children',
+      model: Lesson
+    }, function (err, lessons) {
+      if(err) { return handleError(res, err); }
+      function recursiveMap (lessons, _prefix, nest){
+        // closeure for env, needed to retain nest
+        var nest = nest || 0; // for resetting into child
+        // var index = index || null; // to see where in same level node we are
+        var _prefix = _prefix || null;
+        return lessons.map(function (lesson, i) {
+          var prefix = nest===0 ? i+1 : _prefix+'.'+i;
+          lesson.title = prefix+' '+lesson.title;
+          if (lesson.children.length > 0){
+            lesson.children = recursiveMap(lesson.children, prefix, nest+1)
+          }
+          return lesson;
+        });
+      }
+      var numberedLessons = recursiveMap(lessons, 1);
+      return res.json(200, lessons);
+    });
+  });
 };
 
 // Get a single lesson

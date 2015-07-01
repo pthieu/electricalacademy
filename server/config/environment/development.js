@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/electricalacademy-dev'
   },
 
-  seedDB: false
+  seedDB: true
 };
