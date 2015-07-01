@@ -6,48 +6,37 @@ var Lesson = require('./lesson.model');
 // Get list of lessons
 exports.index = function(req, res) {
   var lessons = [{
-    'id': 1,
     'title': '1. Fundamentals',
-    'url': 'basics',
+    'stub': 'fundamentals',
     'children': [{
-      'id': 11,
-      'title': '1.1. moiré-vision',
-      'url': 'components',
-      'children': [{
-        'id': 111,
-        'title': '1.1.1. tofu-animation',
-        'url': 'resistors',
-        'children': [{
-          'id': 1111,
-          'title': '1.1.1.1. spooky-giraffe',
-          'children': []
-        }, {
-          'id': 1112,
-          'title': '1.1.1.2 bubble-burst',
-          'children': []
-        }]
-      }, {
-        'id': 12,
-        'title': '1.2. barehand-atomsplitting',
-        'url': 'capacitors',
-        'children': []
-      }]
+      'title': '1.0. History',
+      'stub': 'history'
+    },{
+      'title': '1.1. Electricity & electron flow',
+      'stub': 'electricity'
+    },{
+      'title': '1.2. AC/DC',
+      'stub': 'acdc'
     }]
   }, {
-    'id': 2,
-    'title': '2. unicorn-zapper',
-    'url': 'some/url/2',
-    'children': []
-  }, {
-    'id': 3,
-    'title': '3. unicorn-zapper',
-    'url': 'some/url/3',
-    'children': []
-  }, {
-    'id': 4,
-    'title': '4. romantic-transclusion',
-    'url': 'some/url/4',
-    'children': []
+    'title': '2. Basics',
+    'stub': 'components',
+    'children':[{
+      'title': '2.1. Voltage, current, and resistance',
+      'stub': 'resistors'
+    },{
+      'title': '2.2. Signals',
+      'stub': 'signals'
+    },{
+      'title': '2.3. Capacitors and ac circuits',
+      'stub': 'capacitors'
+    },{
+      'title': '2.4. Inductors and transformers',
+      'stub': 'inductors'
+    },{
+      'title': '2.5. Diodes and diode circuits',
+      'stub': 'diodes'
+    }]
   }];
 
   return res.json(200, lessons);
@@ -65,22 +54,34 @@ exports.show = function(req, res) {
     'title': 'annoucenstnsl',
     'content': 'accounements'
   },{
-    'stub': 'basics',
-    'title': 'basics',
-    'content': 'basics content'
+    'stub': 'fundamentals',
+    'title': 'fundamentals',
+    'content': '**fundamentals** _content_'
+  },{
+    'stub': 'electricity',
+    'title': 'electricity',
+    'content': 'electricity content'
+  },{
+    'stub': 'components',
+    'title': 'components',
+    'content': 'components content'
   },{
     'stub': 'resistors',
     'title': 'resistors',
     'content': 'resistors content'
+  },{
+    'stub': 'capacitors',
+    'title': 'capacitors',
+    'content': 'capacitors content'
   }];
 
   // finds matching stub, this means that stub MUST be unique
-  var lesson = _.find(lessons, function (lesson) {
+  var lesson = _.find(lessons, function(lesson) {
     return lesson.stub === stub;
-  }); 
+  });
 
   return res.json(lesson);
-  
+
   // Lesson.findById(req.params.id, function(err, lesson) {
   //   if (err) {
   //     return handleError(res, err);

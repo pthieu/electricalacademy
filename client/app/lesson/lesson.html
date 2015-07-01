@@ -3,7 +3,7 @@
   <div class="col-md-3">
     <script type="text/ng-template" id="nodes_renderer.html">
       <div ui-tree-handle>
-        <a ui-sref=".focus({lesson_stub: lesson.url})">
+        <a ui-sref=".focus({lesson_stub: lesson.stub})">
           {{lesson.title}}
         </a>
       </div>
@@ -14,15 +14,15 @@
     </script>
     <div ui-tree data-drag-enabled="false" data-drop-enabled="false">
       <ol ui-tree-nodes="" ng-model="lessons" id="tree-root">
-        <li><a ui-sref="lesson">Announcements</a></li>
+        <h4><a ui-sref="lesson">Announcements</a></h4>
         <li ng-repeat="lesson in lessons" ui-tree-node ng-include="'nodes_renderer.html'"></li>
       </ol>
     </div>
   </div>
   <div class="col-md-9">
-    <div ui-view>
-      test
-    </div>
+    <ui-view>
+      <div ng-include="'app/landing/landing.html'"></div>
+    </ui-view>
   </div>
 </div>
 <div ng-include="'components/footer/footer.html'"></div>
