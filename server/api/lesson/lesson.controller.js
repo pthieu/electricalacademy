@@ -6,37 +6,48 @@ var Lesson = require('./lesson.model');
 // Get list of lessons
 exports.index = function(req, res) {
   var lessons = [{
-    "id": 1,
-    "title": "1. dragon-breath",
-    "children": [{
-      "id": 2,
-      "title": "2. moiré-vision",
-      "children": [{
-        "id": 21,
-        "title": "2.1. tofu-animation",
-        "children": [{
-          "id": 211,
-          "title": "2.1.1. spooky-giraffe",
-          "children": []
+    'id': 1,
+    'title': '1. Fundamentals',
+    'url': 'basics',
+    'children': [{
+      'id': 11,
+      'title': '1.1. moiré-vision',
+      'url': 'components',
+      'children': [{
+        'id': 111,
+        'title': '1.1.1. tofu-animation',
+        'url': 'resistors',
+        'children': [{
+          'id': 1111,
+          'title': '1.1.1.1. spooky-giraffe',
+          'children': []
         }, {
-          "id": 212,
-          "title": "2.1.2. bubble-burst",
-          "children": []
+          'id': 1112,
+          'title': '1.1.1.2 bubble-burst',
+          'children': []
         }]
       }, {
-        "id": 22,
-        "title": "2.2. barehand-atomsplitting",
-        "children": []
+        'id': 12,
+        'title': '1.2. barehand-atomsplitting',
+        'url': 'capacitors',
+        'children': []
       }]
     }]
   }, {
-    "id": 3,
-    "title": "3. unicorn-zapper",
-    "children": []
+    'id': 2,
+    'title': '2. unicorn-zapper',
+    'url': 'some/url/2',
+    'children': []
   }, {
-    "id": 4,
-    "title": "4. romantic-transclusion",
-    "children": []
+    'id': 3,
+    'title': '3. unicorn-zapper',
+    'url': 'some/url/3',
+    'children': []
+  }, {
+    'id': 4,
+    'title': '4. romantic-transclusion',
+    'url': 'some/url/4',
+    'children': []
   }];
 
   return res.json(200, lessons);
@@ -48,15 +59,37 @@ exports.index = function(req, res) {
 
 // Get a single lesson
 exports.show = function(req, res) {
-  Lesson.findById(req.params.id, function(err, lesson) {
-    if (err) {
-      return handleError(res, err);
-    }
-    if (!lesson) {
-      return res.send(404);
-    }
-    return res.json(lesson);
-  });
+  var stub = req.params.stub;
+  var lessons = [{
+    'stub': '',
+    'title': 'annoucenstnsl',
+    'content': 'accounements'
+  },{
+    'stub': 'basics',
+    'title': 'basics',
+    'content': 'basics content'
+  },{
+    'stub': 'resistors',
+    'title': 'resistors',
+    'content': 'resistors content'
+  }];
+
+  // finds matching stub, this means that stub MUST be unique
+  var lesson = _.find(lessons, function (lesson) {
+    return lesson.stub === stub;
+  }); 
+
+  return res.json(lesson);
+  
+  // Lesson.findById(req.params.id, function(err, lesson) {
+  //   if (err) {
+  //     return handleError(res, err);
+  //   }
+  //   if (!lesson) {
+  //     return res.send(404);
+  //   }
+  //   return res.json(lesson);
+  // });
 };
 
 // Creates a new lesson in the DB.

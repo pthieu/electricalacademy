@@ -11,9 +11,13 @@ angular.module('electricalacademyApp')
     // }, {
     //   'title': 'Articles',
     //   'link': '/article'
+    // }, {
     }, {
-      'title': 'Resume',
-      'link': '/resume'
+      'title': 'Lessons',
+      'link': '/lesson'
+    }, {
+      // 'title': 'Resume',
+      // 'link': '/resume'
     }];
 
     $scope.isCollapsed = true;
@@ -37,6 +41,7 @@ angular.module('electricalacademyApp')
     };
 
     $scope.isActive = function(route) {
+      if (!route) return; // check for empty route
       route = (route.length === 1)?'^'+route+'$':route; // check to see for special case of home's '/'
       var rgx = new RegExp(route,'i')
       return ((!!$location.path().match(rgx))?$location.path().match(rgx).length > 0:null);
