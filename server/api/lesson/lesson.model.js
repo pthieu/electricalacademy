@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+var deepPopulate = require('mongoose-deep-populate');
 
 var LessonSchema = new Schema({
   stub: { // This is for SEO purposes, so URL has some type of lookup via legible words
@@ -26,5 +27,7 @@ var LessonSchema = new Schema({
     ref: 'Lesson'
   }]
 });
+
+LessonSchema.plugin(deepPopulate);
 
 module.exports = mongoose.model('Lesson', LessonSchema);

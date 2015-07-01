@@ -138,31 +138,34 @@ Q.fcall(function() {
             lesson.save();
 
             // Children IDs become new parents
-            IDs.children.forEach(function (parent) {
+            IDs.children.forEach(function(parent) {
               Q.fcall(function() {
-                var deferred = Q.defer();
-                var child = {
-                  '_id': mongoose.Types.ObjectId(),
-                  'title': lesson.title + ' child',
-                  'stub': parent,
-                  'content': 'test',
-                  'parent': parent
-                }
+                  var deferred = Q.defer();
+                  var child = {
+                    '_id': mongoose.Types.ObjectId(),
+                    'title': lesson.title + ' child',
+                    'stub': parent,
+                    'content': 'test',
+                    'parent': parent
+                  }
 
-                var childID = child._id;
-                Lesson.create(child, function () {
-                  deferred.resolve({'parent':parent, 'children':childID})
+                  var childID = child._id;
+                  Lesson.create(child, function() {
+                    deferred.resolve({
+                      'parent': parent,
+                      'children': childID
+                    })
+                  })
+                  return deferred.promise;
                 })
-                return deferred.promise;
-              })
-              .then(function (IDs) {
-                Lesson.findOne({
-                  '_id': IDs.parent
-                }).exec(function(err, lesson) {
-                  lesson.children = IDs.children;
-                  lesson.save();
+                .then(function(IDs) {
+                  Lesson.findOne({
+                    '_id': IDs.parent
+                  }).exec(function(err, lesson) {
+                    lesson.children = IDs.children;
+                    lesson.save();
+                  });
                 });
-              });
             });
           });
         });

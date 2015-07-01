@@ -41,11 +41,12 @@ exports.index = function(req, res) {
   // }];
   // return res.json(200, lessons);
 
-  Lesson.find({'parent':null}).lean().populate('children').exec(function (err, lessons) {
+  Lesson.find({'parent':null},'-content').lean().populate('children', '-content').exec(function (err, lessons) {
     if(err) { return handleError(res, err); }
     Lesson.populate(lessons, {
       path:'children.children',
-      model: Lesson
+      model: Lesson,
+      select: '-content'
     }, function (err, lessons) {
       if(err) { return handleError(res, err); }
       function recursiveMap (lessons, _prefix, nest){
@@ -54,6 +55,7 @@ exports.index = function(req, res) {
         // var index = index || null; // to see where in same level node we are
         var _prefix = _prefix || null; // we define _prefix here to save env, then we have an individual prefix in the .map function because we don't want to append to this one for each element
         return lessons.map(function (lesson, i) {
+          delete lesson.content;
           var prefix = nest===0 ? i+1 : _prefix+'.'+i;
           lesson.title = prefix+' '+lesson.title;
           if (lesson.children.length > 0){
@@ -63,6 +65,7 @@ exports.index = function(req, res) {
         });
       }
       var numberedLessons = recursiveMap(lessons, 1);
+      debugger;
       return res.json(200, lessons);
     });
   });
