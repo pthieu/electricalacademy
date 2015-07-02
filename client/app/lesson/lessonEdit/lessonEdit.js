@@ -1,11 +1,16 @@
 'use strict';
 
 angular.module('electricalacademyApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('lessonEdit', {
         url: '/lessonEdit',
         templateUrl: 'app/lesson/lessonEdit/lessonEdit.html',
-        controller: 'LessonEditCtrl'
+        controller: 'LessonEditCtrl',
+        resolve: {
+          $title: function() {
+            return 'Lesson Edit';
+          }
+        }
       });
   });

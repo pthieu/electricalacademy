@@ -24,14 +24,17 @@ LessonList.find({}).remove(function() {
         'title': 'Electricity',
         'order': 2,
         'lessonRef': 'electricity',
+        'children': [],
       }, {
         'title': 'History',
         'order': 1,
         'lessonRef': 'history',
+        'children': [],
       }, {
         'title': 'Voltage, current, and resistance',
         'order': 3,
         'lessonRef': 'voltage-current-resistance',
+        'children': [],
       }]
     },{
       'title': 'Basics',
@@ -55,13 +58,13 @@ Q.fcall(function() {
         'stub': 'basics',
         'content': '**Basics** _content_'
       }, {
-        'title': 'BJTs',
-        'stub': 'BJTs',
-        'content': '**BJTs** _content_'
+        'title': 'Electricity',
+        'stub': 'electricity',
+        'content': '**Electricity** _content_'
       }, {
-        'title': 'MOSFETs',
-        'stub': 'MOSFETs',
-        'content': '**MOSFETs** _content_'
+        'title': 'History',
+        'stub': 'history',
+        'content': '**History** _content_'
       }];
 
       var parentNodes = _.map(rootNodes, function(node) {

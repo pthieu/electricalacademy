@@ -24,7 +24,6 @@ angular.module('electricalacademyApp')
         'title': 'test',
         'order': lessonList.length,
       });
-      debugger;
       $scope.lessonList = _.sortRecursive(lessonList, 'order');
     });
 
@@ -71,4 +70,38 @@ angular.module('electricalacademyApp')
       // $scope.lessonTitle = '' // Clear input
       // $scope.lessonContent = '' // Clear input
     };
+
+
+
+    // ANGULAR TREE UI STUFF
+    $scope.removeNode = function(scope) {
+      scope.remove();
+    };
+
+    $scope.toggleNode = function(scope) {
+      scope.toggle();
+    };
+
+    $scope.moveLastToTheBeginning = function() {
+      var a = $scope.lessonList.pop();
+      $scope.lessonList.splice(0, 0, a);
+    };
+
+    $scope.newNodeSubItem = function(scope) {
+      var nodeData = scope.$modelValue;
+      nodeData.children.push({
+        order: nodeData.children.length+1,
+        title: nodeData.title + '.child.' + (nodeData.children.length + 1),
+        stub: nodeData.stub + '.child.' + (nodeData.children.length + 1),
+        children: []
+      });
+    };
+
+    // $scope.collapseAll = function() {
+    //   $scope.$broadcast('collapseAll');
+    // };
+
+    // $scope.expandAll = function() {
+    //   $scope.$broadcast('expandAll');
+    // };
   });

@@ -6,6 +6,9 @@ angular.module('electricalacademyApp')
       .state('lesson', {
         url: '/lesson',
         templateUrl: 'app/lesson/lesson.html',
-        controller: 'LessonCtrl'
+        controller: 'LessonCtrl',
+        resolve: {
+          $title: function () { return 'Lessons'; }
+        }
       });
   });
