@@ -1,0 +1,17 @@
+<script type="text/ng-template" id="nodes_renderer.html">
+  <div ui-tree-handle>
+    <a ui-sref=".focus({lesson_stub: lesson.lessonRef})">
+      {{lesson.title}}
+    </a>
+  </div>
+  <ol ui-tree-nodes="" ng-model="lesson.children">
+    <li ng-repeat="lesson in lesson.children" ui-tree-node ng-include="'nodes_renderer.html'">
+    </li>
+  </ol>
+</script>
+<div ui-tree data-drag-enabled="false" data-drop-enabled="false">
+  <ol ui-tree-nodes="" ng-model="list" id="tree-root">
+    <h4><a ui-sref="lesson">Announcements</a></h4>
+    <li ng-repeat="lesson in list" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+  </ol>
+</div>

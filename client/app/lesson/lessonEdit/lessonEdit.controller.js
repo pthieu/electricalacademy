@@ -20,6 +20,11 @@ angular.module('electricalacademyApp')
     };
 
     $http.get('/api/lessonLists').success(function(lessonList) {
+      lessonList.push({
+        'title': 'test',
+        'order': lessonList.length,
+      });
+      debugger;
       $scope.lessonList = _.sortRecursive(lessonList, 'order');
     });
 
