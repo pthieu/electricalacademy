@@ -10,6 +10,7 @@ exports.index = function(req, res) {
     // We can't pass virtuals to client so we have to populate the reference with its virtuals first
     // We also have to convert it to Object because we shouldn't directly change _doc field in the mongoose object
     articles = _.map(articles, function(article) {
+      if (!article.author) return '';
       var fullname = article.author.fullname;
       var obj = article.toObject();
       obj.author.fullname = fullname;

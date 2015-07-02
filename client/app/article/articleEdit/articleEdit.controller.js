@@ -72,7 +72,6 @@ angular.module('electricalacademyApp')
       else {
         $scope.articleCategory.push(category_val);
       }
-
       $scope.articleCategory.sort(); // Sort for easier debugging later
     };
 
@@ -107,8 +106,7 @@ angular.module('electricalacademyApp')
       // Reset view
       // $scope.articleTitle = '' // Clear input
       // $scope.articleContent = '' // Clear input
-
-  	};
+    };
 
     // If user leaves, ask if sure, NOTE: this requires $location service
     // TODO: finish unsaved changes detection

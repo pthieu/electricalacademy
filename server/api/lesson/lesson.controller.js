@@ -1,129 +1,68 @@
 'use strict';
 
 var _ = require('lodash');
+var Q = require('q');
 var Lesson = require('./lesson.model');
+var LessonList = require('../lessonList/lessonList.model');
 
 // Get list of lessons
 exports.index = function(req, res) {
-
-  // var lessons = [{
-  //   'title': '1. Fundamentals',
-  //   'stub': 'fundamentals',
-  //   'children': [{
-  //     'title': '1.0. History',
-  //     'stub': 'history'
-  //   },{
-  //     'title': '1.1. Electricity & electron flow',
-  //     'stub': 'electricity'
-  //   },{
-  //     'title': '1.2. AC/DC',
-  //     'stub': 'acdc'
-  //   }]
-  // }, {
-  //   'title': '2. Basics',
-  //   'stub': 'components',
-  //   'children':[{
-  //     'title': '2.1. Voltage, current, and resistance',
-  //     'stub': 'resistors'
-  //   },{
-  //     'title': '2.2. Signals',
-  //     'stub': 'signals'
-  //   },{
-  //     'title': '2.3. Capacitors and ac circuits',
-  //     'stub': 'capacitors'
-  //   },{
-  //     'title': '2.4. Inductors and transformers',
-  //     'stub': 'inductors'
-  //   },{
-  //     'title': '2.5. Diodes and diode circuits',
-  //     'stub': 'diodes'
-  //   }]
-  // }];
-  // return res.json(200, lessons);
-
-  Lesson.find({'parent':null},'-content').lean().populate('children', '-content').exec(function (err, lessons) {
-    if(err) { return handleError(res, err); }
-    Lesson.populate(lessons, {
-      path:'children.children',
-      model: Lesson,
-      select: '-content'
-    }, function (err, lessons) {
-      if(err) { return handleError(res, err); }
-      function recursiveMap (lessons, _prefix, nest){
-        // closeure for env, needed to retain nest
-        var nest = nest || 0; // for resetting into child
-        // var index = index || null; // to see where in same level node we are
-        var _prefix = _prefix || null; // we define _prefix here to save env, then we have an individual prefix in the .map function because we don't want to append to this one for each element
-        return lessons.map(function (lesson, i) {
-          delete lesson.content;
-          var prefix = nest===0 ? i+1 : _prefix+'.'+i;
-          lesson.title = prefix+' '+lesson.title;
-          if (lesson.children.length > 0){
-            lesson.children = recursiveMap(lesson.children, prefix, nest+1)
-          }
-          return lesson;
-        });
-      }
-      var numberedLessons = recursiveMap(lessons, 1);
-      debugger;
-      return res.json(200, lessons);
-    });
-  });
+  // Lesson.find({'parent':null},'-content').lean().populate('children', '-content').exec(function (err, lessons) {
+  //   if(err) { return handleError(res, err); }
+  //   Lesson.populate(lessons, {
+  //     path:'children.children',
+  //     model: Lesson,
+  //     select: '-content'
+  //   }, function (err, lessons) {
+  //     if(err) { return handleError(res, err); }
+  //     function recursiveMap (lessons, _prefix, nest){
+  //       // closeure for env, needed to retain nest
+  //       var nest = nest || 0; // for resetting into child
+  //       // var index = index || null; // to see where in same level node we are
+  //       var _prefix = _prefix || null; // we define _prefix here to save env, then we have an individual prefix in the .map function because we don't want to append to this one for each element
+  //       return lessons.map(function (lesson, i) {
+  //         delete lesson.content;
+  //         var prefix = nest===0 ? i+1 : _prefix+'.'+i;
+  //         lesson.title = prefix+' '+lesson.title;
+  //         if (lesson.children.length > 0){
+  //           lesson.children = recursiveMap(lesson.children, prefix, nest+1)
+  //         }
+  //         return lesson;
+  //       });
+  //     }
+  //     var numberedLessons = recursiveMap(lessons, 1);
+  //     return res.json(200, lessons);
+  //   });
+  // });
 };
 
 // Get a single lesson
 exports.show = function(req, res) {
   var stub = req.params.stub;
-  var lessons = [{
-    'stub': '',
-    'title': 'annoucenstnsl',
-    'content': 'accounements'
-  },{
-    'stub': 'fundamentals',
-    'title': 'fundamentals',
-    'content': '**fundamentals** _content_'
-  },{
-    'stub': 'electricity',
-    'title': 'electricity',
-    'content': 'electricity content'
-  },{
-    'stub': 'components',
-    'title': 'components',
-    'content': 'components content'
-  },{
-    'stub': 'resistors',
-    'title': 'resistors',
-    'content': 'resistors content'
-  },{
-    'stub': 'capacitors',
-    'title': 'capacitors',
-    'content': 'capacitors content'
-  }];
-
-  // finds matching stub, this means that stub MUST be unique
-  var lesson = _.find(lessons, function(lesson) {
-    return lesson.stub === stub;
+  Lesson.findOne({
+    'stub': stub
+  }).exec(function(err, lesson) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!lesson) {
+      return res.send(404);
+    }
+    return res.json(lesson);
   });
-
-  return res.json(lesson);
-
-  // Lesson.findById(req.params.id, function(err, lesson) {
-  //   if (err) {
-  //     return handleError(res, err);
-  //   }
-  //   if (!lesson) {
-  //     return res.send(404);
-  //   }
-  //   return res.json(lesson);
-  // });
 };
 
 // Creates a new lesson in the DB.
 exports.create = function(req, res) {
-  Lesson.create(req.body, function(err, lesson) {
-    if (err) {
-      return handleError(res, err);
-    }
+  Q.fcall(function () {
+    var deferred = Q.defer();
+    Lesson.create(req.body, function(err, lesson) {
+      if (err) {return handleError(res, err);}
+      deferred.resolve(lesson);
+    });
+    return deferred.promise;
+  }).then(function (lesson) {
+    debugger
     return res.json(201, lesson);
   });
 };

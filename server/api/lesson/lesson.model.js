@@ -18,14 +18,10 @@ var LessonSchema = new Schema({
     type: String,
     required: true
   },
-  parent:{
-    type: Schema.Types.ObjectId,
-    default: null
-  },
-  children: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Lesson'
-  }]
+  _created: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 LessonSchema.plugin(deepPopulate);

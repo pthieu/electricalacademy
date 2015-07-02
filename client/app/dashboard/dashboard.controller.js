@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('electricalacademyApp')
-  .controller('ArticleDashboardCtrl', function($scope, $http, $location) {
+  .controller('DashboardCtrl', function($scope, $http, $location) {
     $scope.$location = $location;
 
     // Grab the initial set of available articles

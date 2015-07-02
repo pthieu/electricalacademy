@@ -1,0 +1,59 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container lesson-edit-view">
+  <div class="row">
+    <form class="col-md-12 form-horizontal" ng-submit="createLesson($event)">
+      <div class="form-group">
+        <h3>Order:</h3>
+        <div class="col-xs-12">
+          <h6>This is for ordering in case we are adding something in between (put nothing to add at end, otherwise it will go above the existing number)</h6>
+          <input type="text" class="form-control" ng-model="lessonOrder">
+        </div>
+      </div>
+      <div class="form-group">
+        <h3>Title:</h3>
+        <div class="col-xs-12">
+          <input type="text" class="form-control" ng-model="lessonTitle" ng-change="updateStub()" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <h3>Stub:</h3>
+        <div class="col-xs-12">
+          <h6>(This will be used to sync the lesson list to this lesson)</h6>
+          <input type="text" class="form-control" ng-model="lessonStub" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <h3>Content:</h3>
+        <div class="col-xs-12">
+          <textarea type="text" class="form-control" rows="5" ng-model="lessonContent" required></textarea>
+          <!-- note, to use ng-bind/ng-model with btf-markdown, have to use attr and not element for directive -->
+        </div>
+      </div>
+      <div class="form-group text-right">
+        <div class="col-xs-12">
+          <button class="btn btn-primary" ng-click="$location.path('lesson/dashboard')">Cancel</button>
+          <button class="btn btn-primary" type="submit">{{!lessonID?'Create':'Update'}}</button>
+          <div class="has-error" ng-show="errors.other">
+            <p class="help-block">{{ errors.other }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <h3>Preview:</h3>
+        <div class="col-xs-12">
+          <h1 ng-bind="lessonTitle"></h1>
+          <markdown class='javascript' ng-model="lessonContent" extensions="prettify"></markdown>
+        </div>
+      </div>
+      <div class="form-group text-right">
+        <div class="col-xs-12">
+          <button class="btn btn-primary" ng-click="$location.path('lesson/dashboard')">Cancel</button>
+          <button class="btn btn-primary" type="submit">{{!!lessonID?'Create':'Update'}}</button>
+          <div class="has-error" ng-show="errors.other">
+            <p class="help-block">{{ errors.other }}</p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

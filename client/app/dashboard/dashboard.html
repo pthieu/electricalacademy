@@ -1,6 +1,6 @@
 <!-- This is the summary page for all the articles, which should have edit options -->
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="container article-dashboard-view">
+<div class="container dashboard-view">
   <div class="col-sm-9">
     <div ng-repeat="article in articles | fuzzySearch : fuzzySearchText : 'OR' track by $index">
       <div class="col-sm-12">
@@ -16,7 +16,8 @@
   </div>
   <div class="col-sm-3">
     <div class="col-sm-12">
-      <button class="btn btn-primary" ng-click="$location.url('/article/edit')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create</button>
+      <button class="btn btn-primary" ng-click="$location.url('/article/edit')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Article</button>
+      <button class="btn btn-primary" ng-click="$location.url('/lessonEdit')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Lesson</button>
     </div>
     <div class="col-sm-12">
       <h3>
