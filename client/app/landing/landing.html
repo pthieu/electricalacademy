@@ -1,30 +1,28 @@
-<div class="landing-view col-xs-12">
-  <div class="row">
-    <div class="col-sm-1">
+<div class="landing-view container-fluid">
+  <div class="row bg-image">
+    <div class="col-xs-12 text-center slogan center-block">
+      <h2><span class="glyphicon glyphicon-off glyphicon-large vmiddle logo-primary-color text-bold" aria-hidden="true"></span> Kickstart your electronics learning</h2>
     </div>
-    <div class="col-sm-11 col-xs-12">
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
       <div class="branding">
-        <!-- <img class="img-responsive" ng-src="../assets/images/logo.png" alt="" /> -->
+        <img class="img-responsive" ng-src="../assets/images/logo.png" alt="" />
         <h1><span class="logo-primary-color text-bold">Electrical</span>Academy</h1>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-4 text-center">
-    </div>
-    <div class="col-xs-8 text-center">
-      <br/>
-      <h2><span class="glyphicon glyphicon-off glyphicon-large vmiddle logo-primary-color text-bold" aria-hidden="true"></span> Kickstart your electronics learning</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <br/>
-      <form class="col-sm-6 form-horizontal center-block" ng-submit="signup(userEmail)">
+    <br/>
+    <div class="col-sm-6 center-block">
+      <form class="form-horizontal signup-form" ng-submit="signup(userEmail)">
         <div class="form-group text-center">
-          <h3>Signup to receive updates!</h3>
-          <div class="col-xs-12">
-            <input type="text" class="form-control" ng-model="userEmail" required>
+          <h3>Sign up for updates!</h3>
+          <div class="input-group">
+            <input type="text" class="form-control col-xs-8" ng-model="userEmail" required>
+            <span class="input-group-btn">
+            <button class="btn btn-danger bg-primary" type="submit">Submit</button>
+      </span>
           </div>
         </div>
       </form>

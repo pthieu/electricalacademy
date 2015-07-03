@@ -1,6 +1,6 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container-fluid main-view">
-  <div class="col-md-3">
+  <div class="col-sm-3">
   <recursive-tree list="lessonList"></recursive-tree>
     <!-- <script type="text/ng-template" id="nodes_renderer.html">
       <div ui-tree-handle>
@@ -20,9 +20,9 @@
       </ol>
     </div> -->
   </div>
-  <div class="col-md-9">
+  <div class="col-sm-9">
     <ui-view>
-      <div ng-include="'app/announcement/announcement.html'" ng-controller="AnnouncementCtrl"></div>
+      <!-- <div ng-include="'app/announcement/announcement.html'" ng-controller="AnnouncementCtrl"></div> -->
     </ui-view>
   </div>
 </div>
