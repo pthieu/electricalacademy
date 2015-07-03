@@ -1,7 +1,4 @@
 .landing-view {
-  .glyphicon-large{
-    font-size:48px;
-  }
   .signup-form{
     input,button{
       display:inline-block;
@@ -11,7 +8,7 @@
     }
   }
   .bg-image{
-    background-image: url('../assets/images/landing/components.jpg');
+    background-image: url('../assets/images/landing/components_banner.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -20,7 +17,26 @@
   .slogan{
     color:#fff;
     padding: 30px 0 30px 0;
+    h2{
+      background-color: @ea-primary-color;
+      margin-bottom:18px;
+      padding-top:5px;
+      padding-bottom:5px;
+    }
+    .glyphicon{
+      font-size:40px;
+      font-weight: bold;
+    }
   }
+  .branding,
+  .uvp {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    h1{
+      font-size:48px;
+    }
+  }
+
   a {
     color: inherit;
   }
@@ -30,7 +46,7 @@
   }
   .logo-primary-color {
     // color: #008aff;
-    color: #ef3030;
+    color: @ea-primary-color;
   }
   .underline {
     text-decoration: underline;
@@ -69,13 +85,6 @@
     color: #ffffff;
     padding-top: 30px;
     width: 100%;
-  }
-  .branding,
-  .uvp {
-    h1{
-      font-size:48px;
-    }
-    margin-bottom: 20px;
   }
   .mailing-list form {
     margin-top: 10px;
