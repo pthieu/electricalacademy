@@ -7,6 +7,10 @@ var LessonList = require('../lessonList/lessonList.model');
 
 // Get list of lessons
 exports.index = function(req, res) {
+  Lesson.find().exec(function (err, lessons) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, lessons);
+  });
   // Lesson.find({'parent':null},'-content').lean().populate('children', '-content').exec(function (err, lessons) {
   //   if(err) { return handleError(res, err); }
   //   Lesson.populate(lessons, {

@@ -1,0 +1,21 @@
+<!-- This is the summary page for all the lessons, which should have edit options -->
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container lesson-dashboard-view">
+  <div class="col-sm-9">
+    {{lessons}}
+  </div>
+  <div class="col-sm-3">
+    <div class="col-sm-12">
+      <button class="btn btn-primary" ng-click="$location.url('/lessonEdit')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Lesson</button>
+    </div>
+    <div class="col-sm-12">
+      <h3>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        Search Lessons
+      </h3>
+      <div class="form-group">
+        <input type="text" class="form-control" id="lesson-search" ng-model="fuzzySearchText">
+      </div>
+    </div>
+  </div>
+</div>

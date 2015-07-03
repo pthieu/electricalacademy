@@ -11,8 +11,7 @@ angular.module('electricalacademyApp')
       type: [
         {'value': 1, 'text': 'Article'},
         {'value': 2, 'text': 'Tutorial'},
-        {'value': 3, 'text': 'Lesson'},
-        {'value': 4, 'text': 'Comic'}
+        {'value': 3, 'text': 'Comic'}
       ],
       // category: [
       //   {'value': 1, 'text': 'General'},
