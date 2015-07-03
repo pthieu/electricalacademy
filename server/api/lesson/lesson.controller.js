@@ -63,6 +63,13 @@ exports.lessonById = function(req, res) {
     return res.json(lesson);
   });
 };
+exports.lessonByStub = function(req, res) {
+  Lesson.findOne({'stub': req.params.stub}, function (err, lesson) {
+    if(err) { return handleError(res, err); }
+    if(!lesson) { return res.send(404); }
+    return res.json(lesson);
+  });
+};
 
 // Creates a new lesson in the DB.
 exports.create = function(req, res) {

@@ -1,4 +1,41 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container lesson-list-edit-view">
-This is the lessonListEdit view.
+  <div class="row">
+    <script type="text/ng-template" id="nodes_renderer_edit.html">
+      <div ui-tree-handle class="tree-node tree-node-content">
+        <a class="btn btn-success btn-xs" ng-if="node.children && node.children.length > 0" data-nodrag ng-click="toggleNode(this)"><span
+        class="glyphicon"
+        ng-class="{
+          'glyphicon-chevron-right': collapsed,
+          'glyphicon-chevron-down': !collapsed
+        }"></span></a> {{node.title}}
+        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeNode(this)"><span
+        class="glyphicon glyphicon-remove"></span></a>
+        <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newNodeSubItem(this)" style="margin-right: 8px;"><span
+        class="glyphicon glyphicon-plus"></span></a>
+      </div>
+      <ol ui-tree-nodes="" ng-model="node.children" ng-class="{hidden: collapsed}">
+        <li ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer_edit.html'">
+        </li>
+      </ol>
+    </script>
+  </div>
+  <form class="col-md-12 form-horizontal" ng-submit="createLesson($event)">
+    <div class="form-group">
+      <h3>Lesson List:</h3>
+      <div class="col-sm-6">
+        <div ui-tree id="tree-root">
+          <ol ui-tree-nodes ng-model="lessonList">
+            <li ng-repeat="node in lessonList" ui-tree-node ng-include="'nodes_renderer_edit.html'"></li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="info">
+          {{info}}
+        </div>
+        <pre class="code">{{ lessonList | json }}</pre>
+      </div>
+    </div>
+    <form>
 </div>

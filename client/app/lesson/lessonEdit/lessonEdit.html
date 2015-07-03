@@ -23,22 +23,6 @@
   <div class="row">
     <form class="col-md-12 form-horizontal" ng-submit="createLesson($event)">
       <div class="form-group">
-        <h3>Lesson List:</h3>
-        <div class="col-sm-6">
-          <div ui-tree id="tree-root">
-            <ol ui-tree-nodes ng-model="lessonList">
-              <li ng-repeat="node in lessonList" ui-tree-node ng-include="'nodes_renderer_edit.html'"></li>
-            </ol>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="info">
-            {{info}}
-          </div>
-          <pre class="code">{{ lessonList | json }}</pre>
-        </div>
-      </div>
-      <div class="form-group">
         <h3>Title:</h3>
         <div class="col-xs-12">
           <input type="text" class="form-control" ng-model="lessonTitle" ng-change="updateStub()" required>

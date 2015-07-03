@@ -2,23 +2,6 @@
 
 angular.module('electricalacademyApp')
   .controller('LessonEditCtrl', function($scope, $http, $stateParams, $location) {
-    _.sortRecursive = function(array, propertyName) {
-      // Goes through each element in array
-      array.forEach(function(item) {
-        // Get the keys of each object in parent array
-        var keys = _.keys(item);
-        // Go through each key we just grabbed
-        keys.forEach(function(key) {
-          // Check if key in that one object in the parent array is an array
-          if (_.isArray(item[key])) {
-            // If it is, sort recursively sort it by the same field name, if that exists
-            item[key] = _.sortRecursive(item[key], propertyName);
-          }
-        });
-      });
-      return _.sortBy(array, propertyName);
-    };
-
     $scope.errors = {}; // initialize errors
 
     // Either we're editing an existing lesson or creating a new one, we can figure this out from params in url
@@ -40,21 +23,13 @@ angular.module('electricalacademyApp')
       });
     }
 
-    $http.get('/api/lessonLists').success(function(lessonList) {
-      lessonList.push({
-        'title': 'test',
-        'order': lessonList.length,
-      });
-      $scope.lessonList = _.sortRecursive(lessonList, 'order');
-    });
-
     // Get a clean url stub by stripping out non-a-z chars
     $scope.updateStub = function() {
       var title = $scope.lessonTitle;
       var lesson_stub = '';
       if (!!title && title.length > 1) {
         // Greedy match all non-alphabetical characters, and then replace whitespace(1 or more) with dashes
-        lesson_stub = title.replace(/[^a-zA-Z -]+/g, '').replace(/[- ]+/g, '-');
+        lesson_stub = title.toLowerCase().replace(/[^a-zA-Z -]+/g, '').replace(/[- ]+/g, '-');
       } else {
         lesson_stub = title;
       }
@@ -91,38 +66,4 @@ angular.module('electricalacademyApp')
       // $scope.lessonTitle = '' // Clear input
       // $scope.lessonContent = '' // Clear input
     };
-
-
-
-    // ANGULAR TREE UI STUFF
-    $scope.removeNode = function(scope) {
-      scope.remove();
-    };
-
-    $scope.toggleNode = function(scope) {
-      scope.toggle();
-    };
-
-    $scope.moveLastToTheBeginning = function() {
-      var a = $scope.lessonList.pop();
-      $scope.lessonList.splice(0, 0, a);
-    };
-
-    $scope.newNodeSubItem = function(scope) {
-      var nodeData = scope.$modelValue;
-      nodeData.children.push({
-        order: nodeData.children.length+1,
-        title: nodeData.title + '.child.' + (nodeData.children.length + 1),
-        stub: nodeData.stub + '.child.' + (nodeData.children.length + 1),
-        children: []
-      });
-    };
-
-    // $scope.collapseAll = function() {
-    //   $scope.$broadcast('collapseAll');
-    // };
-
-    // $scope.expandAll = function() {
-    //   $scope.$broadcast('expandAll');
-    // };
   });
