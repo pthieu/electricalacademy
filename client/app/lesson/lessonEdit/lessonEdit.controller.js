@@ -80,7 +80,7 @@ angular.module('electricalacademyApp')
 
       $http(req).success(function(lesson, status, headers, config) {
         $scope.redirect = true;
-        $location.path('dashboard/lessons'); // Redirect to dashboard if success
+        $location.path('lessonList/edit/'+lesson.stub); // Redirect to dashboard if success
       }).error(function(data, status, headers, config) {
         $scope.errors.other = data.err;
       });
