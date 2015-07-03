@@ -2,5 +2,5 @@
 
 angular.module('electricalacademyApp')
   .controller('LandingCtrl', function ($scope) {
-    $scope.message = 'Hello';
+    $scope.message = 'Hello2';
   });

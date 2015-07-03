@@ -7,6 +7,12 @@
     src: url('../assets/fonts/DIMIS___.TTF');
 }
 
+
+body{
+  font-family: "Segoe UI", "Arial", "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  color: #252525;
+}
+
 /* width configuration */
 @mobile: ~"only screen and (max-width: 767px)";
 @desktop: ~"only screen and (min-width: 768px)";
@@ -30,23 +36,38 @@
   text-align: right !important;
 }
 
+.vmiddle {
+  vertical-align: middle !important;
+}
+.text-bold{
+  font-weight: bold;
+}
+.text-italic{
+  font-style: italic;
+}
+.text-underline {
+  text-decoration: underline;
+}
 a {
   color: #444444;
   &:hover, &:focus{
     color: #888888;
   }
 }
-
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
 }
+.center-block{
+  float:none;
+}
 
 // injector
 @import 'account/login/login.less';
 @import 'admin/admin.less';
+@import 'announcement/announcement.less';
 @import 'article/Directives/categoryLookAhead/categoryLookAhead.less';
 @import 'article/article.less';
 @import 'article/articleEdit/articleEdit.less';
