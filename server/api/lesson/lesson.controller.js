@@ -91,9 +91,7 @@ exports.update = function(req, res) {
       return res.send(404);
     }
     var updated = _.merge(lesson, req.body);
-    debugger;
     updated.save(function(err) {
-      debugger;
       if (err) {
         return handleError(res, err);
       }
