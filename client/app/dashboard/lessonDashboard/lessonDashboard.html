@@ -5,7 +5,7 @@
     <div ng-repeat="lesson in lessons | fuzzySearch : fuzzySearchText : 'OR' track by $index">
       <div class="col-sm-12">
         <div class="row">
-          <h3 class="lesson-title"><a ng-href="lessonEdit/edit/{{lesson.stub}}">{{lesson.title}}</a></h3>
+          <h3 class="lesson-title"><a ng-href="lessonEdit/edit/{{lesson._id}}">{{lesson.title}}</a></h3>
         </div>
         <markdown class='javascript' ng-model="lesson.content" extensions="prettify"></markdown>
       </div>

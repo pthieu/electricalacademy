@@ -56,6 +56,14 @@ exports.show = function(req, res) {
   });
 };
 
+exports.lessonById = function(req, res) {
+  Lesson.findById(req.params.id, function (err, lesson) {
+    if(err) { return handleError(res, err); }
+    if(!lesson) { return res.send(404); }
+    return res.json(lesson);
+  });
+};
+
 // Creates a new lesson in the DB.
 exports.create = function(req, res) {
   Q.fcall(function () {
@@ -66,7 +74,6 @@ exports.create = function(req, res) {
     });
     return deferred.promise;
   }).then(function (lesson) {
-    debugger
     return res.json(201, lesson);
   });
 };
@@ -84,7 +91,9 @@ exports.update = function(req, res) {
       return res.send(404);
     }
     var updated = _.merge(lesson, req.body);
+    debugger;
     updated.save(function(err) {
+      debugger;
       if (err) {
         return handleError(res, err);
       }

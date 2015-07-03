@@ -4,7 +4,7 @@ angular.module('electricalacademyApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('lessonEdit', {
-        url: '/lessonEdit/edit/:lesson_stub',
+        url: '/lessonEdit/edit/:lesson_id',
         templateUrl: 'app/lesson/lessonEdit/lessonEdit.html',
         controller: 'LessonEditCtrl',
         authenticate: true

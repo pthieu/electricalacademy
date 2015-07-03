@@ -19,6 +19,27 @@ angular.module('electricalacademyApp')
       return _.sortBy(array, propertyName);
     };
 
+    $scope.errors = {}; // initialize errors
+
+    // Either we're editing an existing lesson or creating a new one, we can figure this out from params in url
+    $scope.lessonID = (typeof $stateParams.lesson_id === 'undefined' || $stateParams.lesson_id === '') ? null : $stateParams.lesson_id;
+    $scope.lessonExists = false; // Initialize lesson flag to either call a post or put later
+
+
+    // If lessonID exists from URL bar, we call web services to grab info and populate
+    if(!!$scope.lessonID){
+      $http.get('/api/lessons/lessonById/'+$scope.lessonID).success(function(lesson) {
+        // If lesson is found, we the form with the existing lesson for edit
+        $scope.lessonTitle = lesson.title;
+        $scope.lessonStub = lesson.stub;
+        $scope.lessonOrder = lesson.order;
+        $scope.lessonContent = lesson.content;
+        $scope.lessonExists = true;
+      }).error( function (data, status, headers, config) {
+        $scope.lessonExists = false;
+      });
+    }
+
     $http.get('/api/lessonLists').success(function(lessonList) {
       lessonList.push({
         'title': 'test',
@@ -59,7 +80,7 @@ angular.module('electricalacademyApp')
 
       $http(req).success(function(lesson, status, headers, config) {
         $scope.redirect = true;
-        $location.path('lesson/dashboard'); // Redirect to dashboard if success
+        $location.path('dashboard/lessons'); // Redirect to dashboard if success
       }).error(function(data, status, headers, config) {
         $scope.errors.other = data.err;
       });
