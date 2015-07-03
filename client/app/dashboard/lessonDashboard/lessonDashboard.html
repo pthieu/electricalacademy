@@ -2,11 +2,18 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container lesson-dashboard-view">
   <div class="col-sm-9">
-    {{lessons}}
+    <div ng-repeat="lesson in lessons | fuzzySearch : fuzzySearchText : 'OR' track by $index">
+      <div class="col-sm-12">
+        <div class="row">
+          <h3 class="lesson-title"><a ng-href="lessonEdit/edit/{{lesson.stub}}">{{lesson.title}}</a></h3>
+        </div>
+        <markdown class='javascript' ng-model="lesson.content" extensions="prettify"></markdown>
+      </div>
+    </div>
   </div>
   <div class="col-sm-3">
     <div class="col-sm-12">
-      <button class="btn btn-primary" ng-click="$location.url('/lessonEdit')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Lesson</button>
+      <button class="btn btn-primary" ng-click="$location.url('/lessonEdit/edit')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Lesson</button>
     </div>
     <div class="col-sm-12">
       <h3>
