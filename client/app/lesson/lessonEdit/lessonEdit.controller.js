@@ -54,8 +54,8 @@ angular.module('electricalacademyApp')
       }
 
       $http(req).success(function(lesson, status, headers, config) {
-        $scope.redirect = true;
-        $location.path('lessonList/edit/'+lesson.stub); // Redirect to dashboard if success
+        var redirect = (!!$scope.lessonID) ? '/dashboard/lessons' : 'lessonList/edit/'+lesson.stub;
+        $location.path(redirect); // Redirect to dashboard if success
       }).error(function(data, status, headers, config) {
         $scope.errors.other = data.err;
       });
