@@ -1,0 +1,18 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container-fluid thankyou-view">
+  <div class="row messages-wrapper">
+    <h1 class="logo-primary-color text-bold text-center">
+      {{message.primary}}
+    </h1>
+    <h3 class="text-center" ng-show="message.secondary">
+      {{message.secondary}}
+    </h3>
+  </div>
+  <div class="row text-center go-home">
+    <h4 class="text-center">
+      <a href="/lesson">Don't forget to to check out our lessons section!<a>
+    </h4>
+    <h3 class="logo-primary-color"><a href="/">Go to homepage</a></h3>
+  </div>
+</div>
+<div ng-include="'components/footer/footer.html'"></div>

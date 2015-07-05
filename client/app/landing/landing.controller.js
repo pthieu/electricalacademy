@@ -24,7 +24,8 @@ angular.module('electricalacademyApp')
 
       if(form.$valid) {
         $http(req).success(function(mailinglist, status, headers, config) {
-          $location.path('/thankyou/email'+mailinglist.email); // Redirect to dashboard if success
+          //url doesn't do a weird uriencode
+          $location.url('/thankyou/mailinglist?email='+mailinglist.email); // Redirect to dashboard if success
         }).error(function(data, status, headers, config) {
           $scope.submitted = false;
           //MongoDB case
