@@ -1,4 +1,4 @@
-<div class="landing-view container-fluid">
+<div class="landing-view container-fluid" ng-controller="LandingCtrl">
   <div class="row bg-image">
     <div class="col-xs-12 text-center slogan center-block">
       <h2><span class="glyphicon glyphicon-education vmiddle" aria-hidden="true"></span> Kickstart <span class="text-underline">YOUR</span> Electronics Learning</h2>
@@ -14,15 +14,21 @@
   </div>
   <div class="row">
     <div class="col-sm-6 center-block">
-      <form class="form-horizontal signup-form" ng-submit="signup(userEmail)">
+      <form class="form-horizontal signup-form" name="form" ng-submit="signup(form)" novalidate>
         <div class="form-group text-center">
           <h3>Sign up for updates!</h3>
           <div class="input-group">
-            <input type="text" class="form-control col-xs-8" ng-model="userEmail" placeholder="email@company.com" required>
+            <input type="email" class="form-control col-xs-8" name="email" ng-model="user.email" placeholder="email@company.com" required>
             <span class="input-group-btn">
-              <button class="btn btn-danger bg-primary" type="submit">Submit</button>
+              <button class="btn btn-danger bg-primary" type="submit" ng-disabled="submitted">Submit</button>
             </span>
           </div>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="errors.exists">
+            Please enter a valid email.
+          </p>
+          <p class="help-block">{{ errors.other }}</p>
         </div>
       </form>
     </div>
@@ -93,15 +99,21 @@
   </div>
   <div class="row">
     <div class="col-sm-6 center-block">
-      <form class="form-horizontal signup-form" ng-submit="signup(userEmail)">
+      <form class="form-horizontal signup-form" name="form" ng-submit="signup(form)" novalidate>
         <div class="form-group text-center">
-          <h3>Sign up now!</h3>
+          <h3>Sign up for updates!</h3>
           <div class="input-group">
-            <input type="text" class="form-control col-xs-8" ng-model="userEmail" placeholder="email@company.com" required>
+            <input type="email" class="form-control col-xs-8" name="email" ng-model="user.email" placeholder="email@company.com" required>
             <span class="input-group-btn">
-              <button class="btn btn-danger bg-primary" type="submit">Submit</button>
+              <button class="btn btn-danger bg-primary" type="submit" ng-disabled="submitted">Submit</button>
             </span>
           </div>
+        </div>
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="errors.exists">
+            Please enter a valid email.
+          </p>
+          <p class="help-block">{{ errors.other }}</p>
         </div>
       </form>
     </div>
