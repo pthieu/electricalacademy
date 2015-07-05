@@ -23,6 +23,10 @@ angular.module('electricalacademyApp')
       });
     }
 
+    $scope.cancelEdit = function (event) {
+      $location.url('dashboard/lessons');
+    };
+
     // Get a clean url stub by stripping out non-a-z chars
     $scope.updateStub = function() {
       var title = $scope.lessonTitle;

@@ -44,7 +44,7 @@
       </div>
       <div class="form-group text-right">
         <div class="col-xs-12">
-          <button class="btn btn-primary" ng-click="$location.path('lesson/dashboard')">Cancel</button>
+          <button class="btn btn-primary" type="button" ng-click="cancelEdit($event)">Cancel</button>
           <button class="btn btn-primary" type="submit">{{!lessonID?'Create':'Update'}}</button>
           <div class="has-error" ng-show="errors.other">
             <p class="help-block">{{ errors.other }}</p>
@@ -61,7 +61,7 @@
       </div>
       <div class="form-group text-right">
         <div class="col-xs-12">
-          <button class="btn btn-primary" ng-click="$location.path('lesson/dashboard')">Cancel</button>
+          <button class="btn btn-primary" type="button" ng-click="cancelEdit($event)">Cancel</button>
           <button class="btn btn-primary" type="submit">{{!lessonID?'Create':'Update'}}</button>
           <div class="has-error" ng-show="errors.other">
             <p class="help-block">{{ errors.other }}</p>

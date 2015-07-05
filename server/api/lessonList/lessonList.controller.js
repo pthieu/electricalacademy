@@ -36,11 +36,9 @@ exports.create = function(req, res) {
 // Updates an existing lessonList in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  LessonList.findById(req.params.id, function (err, lessonList) {
+  LessonList.update({'_expired': false}, {_expired:true}, {'multi':true}, function (err, raw) {
     if (err) { return handleError(res, err); }
-    if(!lessonList) { return res.send(404); }
-    var updated = _.merge(lessonList, req.body);
-    updated.save(function (err) {
+    LessonList.create(req.body, function (err, lessonList) {
       if (err) { return handleError(res, err); }
       return res.json(200, lessonList);
     });

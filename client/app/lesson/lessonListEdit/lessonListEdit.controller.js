@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('electricalacademyApp')
-  .controller('LessonListEditCtrl', function($scope, $http, $stateParams) {
+  .controller('LessonListEditCtrl', function($scope, $http, $stateParams, $location) {
 
     $scope.lessonStub = (typeof $stateParams.lesson_stub === 'undefined' || $stateParams.lesson_stub === '') ? null : $stateParams.lesson_stub;
 
@@ -25,27 +25,34 @@ angular.module('electricalacademyApp')
     $http.get('/api/lessonLists').success(function(lessonList) {
       $scope.lessonList = _.sortRecursive(lessonList, 'order');
     });
-    $http.get('/api/lessons/lessonByStub/' + $scope.lessonStub).success(function(lesson) {
-      $scope.lessonList.push({
-        'title': lesson.title,
-        'lessonRef': lesson.stub,
-        'order': lesson.order,
+    if (!!$scope.lessonStub) {
+      $http.get('/api/lessons/lessonByStub/' + $scope.lessonStub).success(function(lesson) {
+        $scope.lessonList.push({
+          'title': lesson.title,
+          'lessonRef': lesson.stub,
+          'order': lesson.order,
+          'children': []
+        });
       });
-    });
+    }
+
+    $scope.cancelEdit = function (event) {
+      $location.url('dashboard/lessons');
+    }
 
     // ANGULAR TREE UI STUFF
-    $scope.removeNode = function(scope) {
-      scope.remove();
-    };
+    // $scope.removeNode = function(scope) {
+    //   scope.remove();
+    // };
 
-    $scope.toggleNode = function(scope) {
-      scope.toggle();
-    };
+    // $scope.toggleNode = function(scope) {
+    //   scope.toggle();
+    // };
 
-    $scope.moveLastToTheBeginning = function() {
-      var a = $scope.lessonList.pop();
-      $scope.lessonList.splice(0, 0, a);
-    };
+    // $scope.moveLastToTheBeginning = function() {
+    //   var a = $scope.lessonList.pop();
+    //   $scope.lessonList.splice(0, 0, a);
+    // };
 
     $scope.newNodeSubItem = function(scope) {
       var nodeData = scope.$modelValue;
@@ -54,6 +61,28 @@ angular.module('electricalacademyApp')
         title: nodeData.title + '.child.' + (nodeData.children.length + 1),
         stub: nodeData.stub + '.child.' + (nodeData.children.length + 1),
         children: []
+      });
+    };
+
+    $scope.updateLessonList = function ($event) {
+      var req = {
+        method: 'PUT',
+        url: '/api/lessonLists/',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        data: {
+          list: $scope.lessonList,
+        }
+      }
+
+      $http(req).success(function(lesson, status, headers, config) {
+        debugger;
+        var redirect = '/'
+        // $location.path(redirect); // Redirect to dashboard if success
+      }).error(function(data, status, headers, config) {
+        debugger;
+        $scope.errors.other = data.err;
       });
     };
 
