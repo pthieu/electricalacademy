@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('electricalacademyApp')
-  .controller('LessonCtrl', function($scope, $http) {
+  .controller('LessonCtrl', function($scope, $http, $location) {
     _.sortRecursive = function(array, propertyName) {
       // Goes through each element in array
       array.forEach(function(item) {
@@ -21,5 +21,13 @@ angular.module('electricalacademyApp')
 
     $http.get('/api/lessonLists').success(function(lessonList) {
       $scope.lessonList = _.sortRecursive(lessonList, 'order');
+      var hasIntroduction = _.some($scope.lessonList, function (lesson) {
+        return lesson.lessonRef === 'introduction'
+      });
+
+      if (hasIntroduction){
+        // Redirect to introduction if it exists, ensures /lesson loads in case introduction doesn't exist
+        $location.url('/lesson/introduction');
+      }
     });
   });
