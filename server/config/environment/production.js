@@ -11,7 +11,7 @@ module.exports = {
   // Server port
   port:     process.env.OPENSHIFT_NODEJS_PORT ||
             process.env.PORT ||
-            9001,
+            6969,
 
   // MongoDB connection options
   mongo: {
@@ -21,5 +21,5 @@ module.exports = {
             'mongodb://localhost/electricalacademy'
   },
 
-  hostname: 'phongt.com'
+  hostname: 'electricalacademy.com'
 };

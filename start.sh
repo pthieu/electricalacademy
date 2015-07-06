@@ -3,7 +3,7 @@
 # Variables
 LOG_DIR='log' #log folder, located in same level as this script
 APP_NAME='electricalacademy'
-APP_PORT='9001'
+APP_PORT='6969'
 
 # Check if log directory exists, if not, then created
 if [ ! -d "$LOG_DIR" ]; then
