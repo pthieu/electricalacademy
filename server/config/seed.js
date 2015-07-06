@@ -36,7 +36,7 @@ LessonList.find({}).remove(function() {
         'lessonRef': 'voltage-current-resistance',
         'children': [],
       }]
-    },{
+    }, {
       'title': 'Basics',
       'order': 2,
       'lessonRef': 'basics',
@@ -148,121 +148,127 @@ Q.fcall(function() {
   //             break;
   //         }
 
-  //         var childrenIDs = _.pluck(children, '_id'); // grab all newly created IDs
+//         var childrenIDs = _.pluck(children, '_id'); // grab all newly created IDs
 
-  //         Lesson.create(children, function() {
-  //           deferred.resolve({
-  //             'parent': parent._id,
-  //             'children': childrenIDs // should return two each
-  //           });
-  //         });
-  //         return deferred.promise;
-  //       })
-  //       .then(function(IDs) {
-  //         Lesson.findOne({
-  //           '_id': IDs.parent
-  //         }).exec(function(err, lesson) {
-  //           lesson.children = IDs.children;
-  //           lesson.save();
+//         Lesson.create(children, function() {
+//           deferred.resolve({
+//             'parent': parent._id,
+//             'children': childrenIDs // should return two each
+//           });
+//         });
+//         return deferred.promise;
+//       })
+//       .then(function(IDs) {
+//         Lesson.findOne({
+//           '_id': IDs.parent
+//         }).exec(function(err, lesson) {
+//           lesson.children = IDs.children;
+//           lesson.save();
 
-  //           // Children IDs become new parents
-  //           IDs.children.forEach(function(parent) {
-  //             Q.fcall(function() {
-  //                 var deferred = Q.defer();
-  //                 var child = {
-  //                   '_id': mongoose.Types.ObjectId(),
-  //                   'title': lesson.title + ' child',
-  //                   'stub': parent,
-  //                   'content': 'test',
-  //                   'parent': parent
-  //                 }
+//           // Children IDs become new parents
+//           IDs.children.forEach(function(parent) {
+//             Q.fcall(function() {
+//                 var deferred = Q.defer();
+//                 var child = {
+//                   '_id': mongoose.Types.ObjectId(),
+//                   'title': lesson.title + ' child',
+//                   'stub': parent,
+//                   'content': 'test',
+//                   'parent': parent
+//                 }
 
-  //                 var childID = child._id;
-  //                 Lesson.create(child, function() {
-  //                   deferred.resolve({
-  //                     'parent': parent,
-  //                     'children': childID
-  //                   })
-  //                 })
-  //                 return deferred.promise;
-  //               })
-  //               .then(function(IDs) {
-  //                 Lesson.findOne({
-  //                   '_id': IDs.parent
-  //                 }).exec(function(err, lesson) {
-  //                   lesson.children = IDs.children;
-  //                   lesson.save();
-  //                 });
-  //               });
-  //           });
-  //         });
-  //       });
-  //   });
-  // });
-
-// Q.fcall(function() {
-//     var deferred = Q.defer();
-//     User.find({}).remove(function() {
-//       User.create({
-//         provider: 'local',
-//         firstname: 'Phong',
-//         lastname: 'Thieu',
-//         email: 'pthieu@gmail.com',
-//         password: 'poopoo'
-//       }, function() {
-//         deferred.resolve();
-//         console.log('finished populating users');
+//                 var childID = child._id;
+//                 Lesson.create(child, function() {
+//                   deferred.resolve({
+//                     'parent': parent,
+//                     'children': childID
+//                   })
+//                 })
+//                 return deferred.promise;
+//               })
+//               .then(function(IDs) {
+//                 Lesson.findOne({
+//                   '_id': IDs.parent
+//                 }).exec(function(err, lesson) {
+//                   lesson.children = IDs.children;
+//                   lesson.save();
+//                 });
+//               });
+//           });
+//         });
 //       });
-//     });
-//     return deferred.promise;
-//   })
-//   .then(function() {
-//     console.log('Finding just-seeded user');
-//     return Q.ninvoke(User, 'findOne');
-//   })
-//   .then(function(user) {
-//     var deferred = Q.defer();
-//     var user_id = user._id;
-//     Article.find({}).remove(function() {
-//       Article.create({
-//         image: 'http://dummyimage.com/1280x480/666666/ffffff.png&text=test 1',
-//         title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
-//         content: '**test content 1**',
-//         site: 1,
-//         type: 1,
-//         category: ['general'],
-//         author: user_id
-//       }, {
-//         image: 'http://dummyimage.com/1280x480/ff0000/ffffff.png&text=test 1',
-//         title: 'Lorem Ipsum is simply dummy tex',
-//         content: '**test content 2**',
-//         site: 1,
-//         type: 1,
-//         category: ['general', 'amazon'],
-//         author: user_id
-//       }, {
-//         image: 'http://dummyimage.com/1280x480/00ff00/ffffff.png&text=test 1',
-//         title: 'Lorem Ipsum is simply dummy te',
-//         content: '**test content 3**',
-//         site: 1,
-//         type: 2,
-//         category: ['general', 'doggies'],
-//         author: user_id
-//       }, {
-//         image: 'http://upload.wikimedia.org/wikipedia/commons/b/b5/Wenger_EvoGrip_S17.JPG',
-//         title: 'Why Become Multidisciplinary In The Workforce?',
-//         content: '_The same reason you should focus and perfect a single discipline._\n\nThe question is really quite subjective; I believe the more important question is: _"what is required of you right now and where will your multi-faceted skillset be needed most?"_.\n\nWe need both these types of workers, together creating a balanced workforce; the ones who perform a single function and do it amazingly well, and the ones who can put on different hats and, although will never reach the peak-performance of the single-disciplined person, can do a damn good job as well, not to mention pull a clutch play when needed.\n\nThe important part about being multidisciplinary, is that you really need to keep an eye out on when that\'s needed. If your company is a large corporation, you\'re probably not going to be able to utilize your full potential. Not to say it\'s impossible, but you\'re generally going to have to become a single cog in the machine, never utilizing your pull potential. \n\nWhat you\'d need to do is find a smaller company where you can be agile, and move where you\'re needed, to be able to give an opinion from a world where your complementing skills come from, to be able to combine your experiences and view the world at angles uncommonly perceived. The good thing about being multidisciplinary is that you\'ll begin to notice gaps between your disciplines that few can fill, and to build these bridges to allow others to get across is how you\'ll be able to improve yourself and how we will advance as a race, together.',
-//         site: 1,
-//         type: 1,
-//         category: ['general', 'test3'],
-//         author: user_id
-//       }, function() {
-//         deferred.resolve();
-//         console.log('finished populating Articles');
-//       });
-//     });
-//     return deferred.promise;
 //   });
+// });
+
+Q.fcall(function() {
+    var deferred = Q.defer();
+    User.find({}).remove(function() {
+      User.create({
+        provider: 'local',
+        firstname: 'Phong',
+        lastname: 'Thieu',
+        email: 'pthieu@gmail.com',
+        password: 'poopoo'
+      }, {
+        provider: 'local',
+        firstname: 'Sina',
+        lastname: 'Rasouli',
+        email: 'rasosina@gmail.com',
+        password: 'sina123'
+      }, function() {
+        deferred.resolve();
+        console.log('finished populating users');
+      });
+    });
+    return deferred.promise;
+  })
+  //   .then(function() {
+  //     console.log('Finding just-seeded user');
+  //     return Q.ninvoke(User, 'findOne');
+  //   })
+  //   .then(function(user) {
+  //     var deferred = Q.defer();
+  //     var user_id = user._id;
+  //     Article.find({}).remove(function() {
+  //       Article.create({
+  //         image: 'http://dummyimage.com/1280x480/666666/ffffff.png&text=test 1',
+  //         title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
+  //         content: '**test content 1**',
+  //         site: 1,
+  //         type: 1,
+  //         category: ['general'],
+  //         author: user_id
+  //       }, {
+  //         image: 'http://dummyimage.com/1280x480/ff0000/ffffff.png&text=test 1',
+  //         title: 'Lorem Ipsum is simply dummy tex',
+  //         content: '**test content 2**',
+  //         site: 1,
+  //         type: 1,
+  //         category: ['general', 'amazon'],
+  //         author: user_id
+  //       }, {
+  //         image: 'http://dummyimage.com/1280x480/00ff00/ffffff.png&text=test 1',
+  //         title: 'Lorem Ipsum is simply dummy te',
+  //         content: '**test content 3**',
+  //         site: 1,
+  //         type: 2,
+  //         category: ['general', 'doggies'],
+  //         author: user_id
+  //       }, {
+  //         image: 'http://upload.wikimedia.org/wikipedia/commons/b/b5/Wenger_EvoGrip_S17.JPG',
+  //         title: 'Why Become Multidisciplinary In The Workforce?',
+  //         content: '_The same reason you should focus and perfect a single discipline._\n\nThe question is really quite subjective; I believe the more important question is: _"what is required of you right now and where will your multi-faceted skillset be needed most?"_.\n\nWe need both these types of workers, together creating a balanced workforce; the ones who perform a single function and do it amazingly well, and the ones who can put on different hats and, although will never reach the peak-performance of the single-disciplined person, can do a damn good job as well, not to mention pull a clutch play when needed.\n\nThe important part about being multidisciplinary, is that you really need to keep an eye out on when that\'s needed. If your company is a large corporation, you\'re probably not going to be able to utilize your full potential. Not to say it\'s impossible, but you\'re generally going to have to become a single cog in the machine, never utilizing your pull potential. \n\nWhat you\'d need to do is find a smaller company where you can be agile, and move where you\'re needed, to be able to give an opinion from a world where your complementing skills come from, to be able to combine your experiences and view the world at angles uncommonly perceived. The good thing about being multidisciplinary is that you\'ll begin to notice gaps between your disciplines that few can fill, and to build these bridges to allow others to get across is how you\'ll be able to improve yourself and how we will advance as a race, together.',
+  //         site: 1,
+  //         type: 1,
+  //         category: ['general', 'test3'],
+  //         author: user_id
+  //       }, function() {
+  //         deferred.resolve();
+  //         console.log('finished populating Articles');
+  //       });
+  //     });
+  //     return deferred.promise;
+  //   });
 
 
 
