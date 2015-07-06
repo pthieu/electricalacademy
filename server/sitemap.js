@@ -12,6 +12,7 @@ var config = require('./config/environment');
 
 // required
 var Article = require('./api/article/article.model');
+var Lesson = require('./api/lesson/lesson.model');
 
 module.exports = function(app) {
   var articleURLs = [];
@@ -33,9 +34,10 @@ module.exports = function(app) {
 
   // Create a promise that gets triggered after multiple mongoose calls completed.
   Q.all([
-      Article.find({}).exec()
+      Article.find({}).exec(),
+      Lesson.find({}).exec()
     ])
-    .spread(function(articleResult) {
+    .spread(function(articleResult, lessonResult) {
       // iterate through results and push to URLS accordingly
       articleResult.forEach(function(article) {
         var t = new Date(article._created);
