@@ -8,7 +8,7 @@ angular.module('electricalacademyApp')
     switch (thankyou_type) {
       case 'mailinglist':
         $scope.message.primary = 'Thanks for signing up!';
-        $scope.message.secondary = (query_params.hasOwnProperty('email')) ?
+        $scope.message.secondary = (query_params.hasOwnProperty('email') && query_params.email.length !== 0 ) ?
             'Your email "' + query_params.email + '" has been added to our mailing list.' : '';
         break;
       default:
