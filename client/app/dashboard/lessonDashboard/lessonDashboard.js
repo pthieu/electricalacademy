@@ -6,6 +6,7 @@ angular.module('electricalacademyApp')
       .state('lessonDashboard', {
         url: '/dashboard/lessons',
         templateUrl: 'app/dashboard/lessonDashboard/lessonDashboard.html',
-        controller: 'LessonDashboardCtrl'
+        controller: 'LessonDashboardCtrl',
+        authenticate: true
       });
   });

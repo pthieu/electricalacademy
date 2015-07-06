@@ -6,11 +6,13 @@ angular.module('electricalacademyApp')
       .state('lessonListEdit', {
         url: '/lessonList/edit',
         templateUrl: 'app/lesson/lessonListEdit/lessonListEdit.html',
-        controller: 'LessonListEditCtrl'
+        controller: 'LessonListEditCtrl',
+        authenticate: true
       })
       .state('lessonListEdit_new', {
         url: '/lessonList/edit/:lesson_stub',
         templateUrl: 'app/lesson/lessonListEdit/lessonListEdit.html',
-        controller: 'LessonListEditCtrl'
+        controller: 'LessonListEditCtrl',
+        authenticate: true
       });
   });

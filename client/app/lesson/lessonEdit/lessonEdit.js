@@ -13,6 +13,7 @@ angular.module('electricalacademyApp')
         url: '/lessonEdit/edit',
         templateUrl: 'app/lesson/lessonEdit/lessonEdit.html',
         controller: 'LessonEditCtrl',
+        authenticate: true,
         resolve: {
           $title: function() {
             return 'Lesson Edit';
