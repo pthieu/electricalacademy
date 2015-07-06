@@ -28,10 +28,6 @@ module.exports = function(app) {
       url: '/', // http://electricalacademy.com + '/'
       changefreq: 'daily',
       priority: 1
-    }, {
-      url: '/resume',
-      changefreq: 'monthly',
-      priority: 0.9
     }]
   });
 
