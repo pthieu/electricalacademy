@@ -1,0 +1,21 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container-fluid">
+  <div class="col-md-12">
+    <h3>Emails:</h3>
+    <table class="table-striped table-condensed">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="signup in mailinglist">
+          <td>{{signup.email}}</td>
+          <td>{{signup._created}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div ng-include="'components/footer/footer.html'"></div>
