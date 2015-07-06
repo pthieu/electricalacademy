@@ -16,10 +16,11 @@ var Lesson = require('./api/lesson/lesson.model');
 
 module.exports = function(app) {
   var articleURLs = [];
+  var lessonURLs = [];
 
   // sitemap object with hardcoded URLs
   var sitemap = sm.createSitemap({
-    hostname: (config.env === 'production') ? 'http://'+config.hostname : 'http://localhost:'+config.port,
+    hostname: (config.env === 'production') ? 'http://' + config.hostname : 'http://localhost:' + config.port,
     cacheTime: 600000, // 600 sec - cache purge period 
     urls: [{
       url: '', // http://electricalacademy.com
@@ -57,8 +58,20 @@ module.exports = function(app) {
           priority: 0.5
         });
       });
+      lessonResult.forEach(function(lesson) {
+        lessonURLs.push({
+          url: ['/lesson', lesson.stub].join('/'),
+          changefreq: 'monthly',
+          priority: 0.5
+        });
+      });
       // Use reduce to append result array into sitemap.urls array for performance
       sitemap.urls = articleURLs.reduce(function(coll, item) {
+        coll.push(item);
+        return coll;
+      }, sitemap.urls);
+
+      sitemap.urls = lessonURLs.reduce(function(coll, item) {
         coll.push(item);
         return coll;
       }, sitemap.urls);
