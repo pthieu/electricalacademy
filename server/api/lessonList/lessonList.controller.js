@@ -35,6 +35,9 @@ exports.create = function(req, res) {
 
 // Updates an existing lessonList in the DB.
 exports.update = function(req, res) {
+  // Go through nodes and apply order to ones who don't and update existing out-of-order nodes
+  req.body.list = reapplyOrderRecursive(req.body.list);
+
   if(req.body._id) { delete req.body._id; }
   LessonList.update({'_expired': false}, {_expired:true}, {'multi':true}, function (err, raw) {
     if (err) { return handleError(res, err); }
@@ -59,4 +62,14 @@ exports.destroy = function(req, res) {
 
 function handleError(res, err) {
   return res.send(500, err);
+}
+
+function reapplyOrderRecursive(array){
+  return _.map(array, function (val, i) {
+    val.order = i+1;
+    if(val.children.length > 0){
+      val.children = reapplyOrderRecursive(val.children);
+    }
+    return val;
+  });  
 }

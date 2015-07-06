@@ -2,7 +2,7 @@
 
 angular.module('electricalacademyApp')
   .controller('LessonListEditCtrl', function($scope, $http, $stateParams, $location) {
-
+    $scope.errors = {};
     $scope.lessonStub = (typeof $stateParams.lesson_stub === 'undefined' || $stateParams.lesson_stub === '') ? null : $stateParams.lesson_stub;
 
     _.sortRecursive = function(array, propertyName) {
@@ -36,7 +36,7 @@ angular.module('electricalacademyApp')
       });
     }
 
-    $scope.cancelEdit = function (event) {
+    $scope.cancelEdit = function(event) {
       $location.url('dashboard/lessons');
     }
 
@@ -45,26 +45,52 @@ angular.module('electricalacademyApp')
     //   scope.remove();
     // };
 
-    // $scope.toggleNode = function(scope) {
-    //   scope.toggle();
-    // };
+    $scope.toggleNode = function(scope) {
+      scope.toggle();
+    };
 
     // $scope.moveLastToTheBeginning = function() {
     //   var a = $scope.lessonList.pop();
     //   $scope.lessonList.splice(0, 0, a);
     // };
 
-    $scope.newNodeSubItem = function(scope) {
+    $scope.cancelChild = function (scope) {
+      delete scope.$modelValue.openChildOptions;
+      delete scope.$modelValue.openNodeOptions;
+    };
+    $scope.openChildMenu = function(scope) {
+      delete scope.$modelValue.openNodeOptions;
+      scope.$modelValue.openChildOptions = true;
+    };
+    $scope.editNode = function (scope) {
+      delete scope.$modelValue.openChildOptions;
+      scope.$modelValue.openNodeOptions = true;
+      scope.nodeTitle = scope.$modelValue.title;
+      scope.nodeStub = scope.$modelValue.lessonRef;
+    };
+    $scope.newChild = function(scope) {
       var nodeData = scope.$modelValue;
+      var nodeTitle = !!scope.nodeTitle ?
+        scope.nodeTitle :
+        nodeData.title + '.child.' + (nodeData.children.length + 1);
+      var nodeStub = !!scope.nodeStub ?
+        scope.nodeStub :
+        nodeData.lessonRef + '.child.' + (nodeData.children.length + 1);
+      
+      // Clear items
+      delete scope.$modelValue.openChildOptions;
+      scope.nodeTitle = '';
+      scope.nodeStub = '';
+      
       nodeData.children.push({
         order: nodeData.children.length + 1,
-        title: nodeData.title + '.child.' + (nodeData.children.length + 1),
-        stub: nodeData.stub + '.child.' + (nodeData.children.length + 1),
+        title: nodeTitle,
+        lessonRef: nodeStub,
         children: []
       });
+      
     };
-
-    $scope.updateLessonList = function ($event) {
+    $scope.updateLessonList = function($event) {
       var req = {
         method: 'PUT',
         url: '/api/lessonLists/',
@@ -77,12 +103,10 @@ angular.module('electricalacademyApp')
       }
 
       $http(req).success(function(lesson, status, headers, config) {
-        debugger;
-        var redirect = '/'
-        // $location.path(redirect); // Redirect to dashboard if success
+        var redirect = 'dashboard/lessons'
+        $location.path(redirect); // Redirect to dashboard if success
       }).error(function(data, status, headers, config) {
-        debugger;
-        $scope.errors.other = data.err;
+        $scope.errors.other = (!!data.errors) ? data.errors : '';
       });
     };
 

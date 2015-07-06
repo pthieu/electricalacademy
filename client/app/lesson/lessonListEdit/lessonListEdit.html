@@ -3,18 +3,33 @@
   <div class="row">
     <script type="text/ng-template" id="nodes_renderer_edit.html">
       <div ui-tree-handle class="tree-node tree-node-content">
-        <a class="btn btn-success btn-xs" ng-if="node.children && node.children.length > 0" data-nodrag ng-click="toggleNode(this)"><span
-        class="glyphicon"
-        ng-class="{
+        <a class="btn btn-success btn-xs" ng-if="node.children && node.children.length > 0" data-nodrag ng-click="toggleNode(this)">
+          <span class="glyphicon" ng-class="{
           'glyphicon-chevron-right': collapsed,
-          'glyphicon-chevron-down': !collapsed
-        }"></span></a> {{node.title}}
+          'glyphicon-chevron-down': !collapsed }"></span>
+        </a>
+        {{node.title}}
         <span ng-class="{hidden: !!lessonStub}">
-          <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeNode(this)"><span
-          class="glyphicon glyphicon-remove"></span></a>
-        <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newNodeSubItem(this)" style="margin-right: 8px;"><span
-          class="glyphicon glyphicon-plus"></span></a>
+          <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeNode(this)">
+            <span class="glyphicon glyphicon-remove"></span>
+          </a>
+          <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="openChildMenu(this)" style="margin-right: 8px;">
+            <span class="glyphicon glyphicon-plus"></span>
+          </a>
+          <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="editNode(this)">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </a>
         </span>
+      </div>
+      <div ng-show="node.openChildOptions || node.openNodeOptions">
+        <input type="text" class="form-control" ng-show="node.openChildOptions" ng-model="nodeTitle" placeholder="Title">
+        <input type="text" class="form-control" ng-show="node.openChildOptions" ng-model="nodeStub" placeholder="LessonRef">
+        <input type="text" class="form-control" ng-show="node.openNodeOptions" ng-model="node.title" placeholder="Title">
+        <input type="text" class="form-control" ng-show="node.openNodeOptions" ng-model="node.lessonRef" placeholder="LessonRef">
+        <div class="text-right">
+          <button class="btn btn-primary" type="button" ng-click="cancelChild(this)">{{node.openChildOptions?'Cancel':'Close'}}</button>
+          <button class="btn btn-primary" type="button" ng-show="node.openChildOptions" ng-click="newChild(this)">Create</button>
+        </div>
       </div>
       <ol ui-tree-nodes="" ng-model="node.children" ng-class="{hidden: collapsed}">
         <li ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer_edit.html'">
