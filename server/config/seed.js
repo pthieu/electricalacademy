@@ -17,31 +17,38 @@ var Q = require('q');
 LessonList.find({}).remove(function() {
   LessonList.create({
     list: [{
-      'title': 'Fundamentals',
+      'title': 'Introduction',
       'order': 1,
-      'lessonRef': 'fundamentals',
-      'children': [{
-        'title': 'Electricity',
-        'order': 2,
-        'lessonRef': 'electricity',
-        'children': [],
-      }, {
-        'title': 'History',
-        'order': 1,
-        'lessonRef': 'history',
-        'children': [],
-      }, {
-        'title': 'Voltage, current, and resistance',
-        'order': 3,
-        'lessonRef': 'voltage-current-resistance',
-        'children': [],
-      }]
-    }, {
-      'title': 'Basics',
-      'order': 2,
-      'lessonRef': 'basics',
+      'lessonRef': 'introduction',
       'children': []
-    }]
+    }
+    // ,{
+    //   'title': 'Fundamentals',
+    //   'order': 1,
+    //   'lessonRef': 'fundamentals',
+    //   'children': [{
+    //     'title': 'Electricity',
+    //     'order': 2,
+    //     'lessonRef': 'electricity',
+    //     'children': [],
+    //   }, {
+    //     'title': 'History',
+    //     'order': 1,
+    //     'lessonRef': 'history',
+    //     'children': [],
+    //   }, {
+    //     'title': 'Voltage, current, and resistance',
+    //     'order': 3,
+    //     'lessonRef': 'voltage-current-resistance',
+    //     'children': [],
+    //   }]
+    // }, {
+    //   'title': 'Basics',
+    //   'order': 2,
+    //   'lessonRef': 'basics',
+    //   'children': []
+    // }
+    ]
   });
 });
 
@@ -49,23 +56,30 @@ Q.fcall(function() {
     var deferred = Q.defer();
     Lesson.find({}).remove(function() {
       var id = mongoose.Types.ObjectId();
-      var rootNodes = [{
-        'title': 'Fundamentals',
-        'stub': 'fundamentals',
-        'content': '**Fundamentals** _content_'
-      }, {
-        'title': 'Basics',
-        'stub': 'basics',
-        'content': '**Basics** _content_'
-      }, {
-        'title': 'Electricity',
-        'stub': 'electricity',
-        'content': '**Electricity** _content_'
-      }, {
-        'title': 'History',
-        'stub': 'history',
-        'content': '**History** _content_'
-      }];
+      var rootNodes = [
+      {
+        'title': 'Introduction',
+        'stub': 'introduction',
+        'content': '**Introduction**'
+      }
+      // ,{
+      //   'title': 'Fundamentals',
+      //   'stub': 'fundamentals',
+      //   'content': '**Fundamentals** _content_'
+      // }, {
+      //   'title': 'Basics',
+      //   'stub': 'basics',
+      //   'content': '**Basics** _content_'
+      // }, {
+      //   'title': 'Electricity',
+      //   'stub': 'electricity',
+      //   'content': '**Electricity** _content_'
+      // }, {
+      //   'title': 'History',
+      //   'stub': 'history',
+      //   'content': '**History** _content_'
+      // }
+      ];
 
       var parentNodes = _.map(rootNodes, function(node) {
         return {
