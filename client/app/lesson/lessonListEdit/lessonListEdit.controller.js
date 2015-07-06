@@ -4,6 +4,7 @@ angular.module('electricalacademyApp')
   .controller('LessonListEditCtrl', function($scope, $http, $stateParams, $location) {
     $scope.errors = {};
     $scope.lessonStub = (typeof $stateParams.lesson_stub === 'undefined' || $stateParams.lesson_stub === '') ? null : $stateParams.lesson_stub;
+    $scope.show_data = true;
 
     _.sortRecursive = function(array, propertyName) {
       // Goes through each element in array
@@ -35,6 +36,10 @@ angular.module('electricalacademyApp')
         });
       });
     }
+
+    $scope.toggleData = function () {
+      $scope.show_data = !$scope.show_data;
+    };
 
     $scope.cancelEdit = function(event) {
       $location.url('dashboard/lessons');
