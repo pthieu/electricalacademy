@@ -7,25 +7,31 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('socketMock'));
 
   var MainCtrl,
+      element,
       scope,
       $httpBackend;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope, $http) {
+    scope = $rootScope.$new();
+    
     $httpBackend = _$httpBackend_;
+    // Common response, will probably need this for all directives in main.html
     $httpBackend.whenGET('app/main/main.html').respond(200, '');
 
-    $httpBackend.expectGET('/api/articles')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
+    // when the backend receives a GET call for '/api/articles', respond with array of random stuff
+    // TODO: probably don't need this because we changed main.html
+    // $httpBackend.whenGET('/api/articles')
+    //   .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
 
-    scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+      $scope: scope,
+      $http: $http
     });
   }));
 
-  it('should attach a list of things to the scope', function () {
+  it('should attach a list of things to the scope', inject(function ($compile) {
     $httpBackend.flush();
-    expect(typeof scope.articles).toBe('object');
-  });
+    // expect(typeof scope.articles).toBe('object');
+  }));
 });

@@ -3,18 +3,42 @@
 var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
+var LessonList = require('./lessonList.model');
 
-describe('GET /api/lessonLists', function() {
+var lessonList = new LessonList({
+  "list": [{
+    "children": [],
+    "lessonRef": "introduction",
+    "order": 1,
+    "title": "Introduction"
+  }],
+  "_expired": false,
+  "__v": 0
+});
 
-  it('should respond with JSON array', function(done) {
-    request(app)
-      .get('/api/lessonLists')
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .end(function(err, res) {
-        if (err) return done(err);
-        res.body.should.be.instanceof(Array);
-        done();
-      });
+describe('lessonLists API Suite', function() {
+  before(function (done) {
+    lessonList.save(function (err) {
+      if (err) return done(err);
+      done();
+    });
+  });
+  after(function () {
+    return LessonList.remove().exec();
+  });
+
+  describe('GET /api/lessonLists', function() {
+    it('should respond with JSON array with at least one lesson', function(done) {
+      request(app)
+        .get('/api/lessonLists')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) return done(err);
+          res.body.should.be.instanceof(Array);
+          res.body.length.should.be.above(0);
+          done();
+        });
+    });
   });
 });

@@ -6,9 +6,14 @@ describe('Directive: recursiveTree', function () {
   beforeEach(module('electricalacademyApp'));
   beforeEach(module('components/recursiveTree/recursiveTree.html'));
 
-  var element, scope;
+  var $httpBackend,
+      element,
+      scope;
 
-  beforeEach(inject(function ($rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $rootScope) {
+    $httpBackend = _$httpBackend_;
+    $httpBackend.whenGET('app/main/main.html').respond(200, '');
+
     scope = $rootScope.$new();
   }));
 
@@ -16,6 +21,6 @@ describe('Directive: recursiveTree', function () {
     element = angular.element('<recursive-tree></recursive-tree>');
     element = $compile(element)(scope);
     scope.$apply();
-    expect(element.text()).toBe('this is the recursiveTree directive');
+    expect(element.text()).toMatch(/ui-sref=".focus/);
   }));
 });

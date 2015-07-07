@@ -12,6 +12,9 @@ exports.index = function(req, res) {
   
   LessonList.findOne({'_expired':false}).exec(function (err, lessonList) {
     if(err) { return handleError(res, err); }
+    if (!lessonList){
+      return handleError(res, {message: 'null value returned from DB'});
+    }
     return res.json(200, lessonList.list);
   });
 };

@@ -20,7 +20,7 @@ angular.module('electricalacademyApp')
   };
   // Grab existing articles
   // $http.get('/api/articles').success(function(articles) {
-    // Truncate content for each article so dashboard isn't cluttered
+    // // Truncate content for each article so dashboard isn't cluttered
     // $scope.articles = articles.map(function(_article) {
     //   var _content = _article.content;
     //   var trunc_length = 200; // truncation length in characters
