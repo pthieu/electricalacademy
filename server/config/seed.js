@@ -7,7 +7,6 @@
 
 var _ = require('lodash');
 var mongoose = require('mongoose');
-var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Article = require('../api/article/article.model');
 var Lesson = require('../api/lesson/lesson.model');
@@ -221,15 +220,19 @@ Q.fcall(function() {
         provider: 'local',
         firstname: 'Phong',
         lastname: 'Thieu',
+        role: 'admin',
         email: 'pthieu@gmail.com',
         password: 'poopoo'
-      }, {
-        provider: 'local',
-        firstname: 'Sina',
-        lastname: 'Rasouli',
-        email: 'rasosina@gmail.com',
-        password: 'sina123'
-      }, function() {
+      },
+      // {
+      //   provider: 'local',
+      //   firstname: 'Sina',
+      //   lastname: 'Rasouli',
+      //   role: 'admin',
+      //   email: 'rasosina@gmail.com',
+      //   password: 'sina123'
+      // }, 
+      function() {
         deferred.resolve();
         console.log('finished populating users');
       });
