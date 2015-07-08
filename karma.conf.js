@@ -23,7 +23,6 @@ module.exports = function(config) {
       'client/bower_components/angular-socket-io/socket.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-markdown/angular.markdown.js',
-      'client/bower_components/angular-ui-router-title/angular-ui-router-title.js',
       'client/bower_components/angular-filter/dist/angular-filter.js',
       'client/bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'client/app/app.js',

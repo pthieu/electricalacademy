@@ -8,7 +8,8 @@ angular.module('electricalacademyApp')
         templateUrl: 'app/lesson/lesson.html',
         controller: 'LessonCtrl',
         resolve: {
-          $title: function () { return 'Lessons'; }
+          $title: function () { return 'Lessons'; },
+          $description: function () { return 'Learn electronics and electrical engineering principles'; }
         }
       });
   });

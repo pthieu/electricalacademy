@@ -8,7 +8,6 @@ angular.module('electricalacademyApp', [
     'ui.router',
     'ui.bootstrap',
     'angular-markdown',
-    'ui.router.title',
     'angular.filter',
     'ui.tree'
   ])
@@ -55,7 +54,7 @@ angular.module('electricalacademyApp', [
       }
     };
   })
-  .run(function($rootScope, $location, Auth) {
+  .run(function($rootScope, $location, Auth, $timeout, $state) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function(event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -64,4 +63,44 @@ angular.module('electricalacademyApp', [
         }
       });
     });
+    $rootScope.$on("$stateChangeSuccess", function() {
+      var meta = {
+        'list': ['$title', '$description'],
+        'items': {}
+      }
+
+      meta.list.forEach(function (item) {
+        meta.items[item] = getMetaValue($state.$current.locals.globals[item]);
+        if (meta.items[item]) {
+          $timeout(function() {
+            $rootScope[item] = meta.items[item];
+          });
+        }
+      });
+
+      $rootScope.$breadcrumbs = [];
+      var state = $state.$current;
+      while (state) {
+        var unshiftItems = {};
+        var needUnshift = false;
+        meta.list.forEach(function (item) {
+          if (state.resolve && state.resolve[item]) {
+            unshiftItems[item.replace(/\$/, '')] = getMetaValue(state.locals.globals[item])
+            needUnshift = true;
+          }    
+        });
+        if (needUnshift) {
+          $rootScope.$breadcrumbs.unshift(unshiftItems);
+          $rootScope.$breadcrumbs.unshift({
+            state: state.self.name,
+            stateParams: state.locals.globals.$stateParams
+          });
+        }
+        state = state.parent;
+      }
+    });
+
+    function getMetaValue(item) {
+      return angular.isFunction(item) ? item() : item;
+    }
   });
