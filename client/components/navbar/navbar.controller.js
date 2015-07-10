@@ -15,10 +15,12 @@ angular.module('electricalacademyApp')
     }, {
       'title': 'Lessons',
       'link': '/lesson'
-    }, {
-      // 'title': 'Resume',
-      // 'link': '/resume'
-    }];
+    }
+    // ,{
+    //   'title': 'Resume',
+    //   'link': '/resume'
+    // }
+    ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
