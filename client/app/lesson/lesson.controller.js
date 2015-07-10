@@ -24,8 +24,9 @@ angular.module('electricalacademyApp')
       var hasIntroduction = _.some($scope.lessonList, function (lesson) {
         return lesson.lessonRef === 'introduction'
       });
-
-      if (hasIntroduction){
+      // Below redirect is to just skip the announcement section since we don't have one yet, also makes sure
+      // we don't redirect if we're already looking at a specific lesson
+      if (hasIntroduction && $location.url().match(/\/lesson$/)){
         // Redirect to introduction if it exists, ensures /lesson loads in case introduction doesn't exist
         $location.url('/lesson/introduction');
       }
